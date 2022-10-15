@@ -1,6 +1,12 @@
 #include "Functions.h"
 #include "time.h"
 
+int get_int_len (int value){
+  int l=1;
+  while(value>9){ l++; value/=10; }
+  return l;
+}
+
 //verification algorithms
 bool A1(long long N){
     for (long long i = 2; i < N; i++)

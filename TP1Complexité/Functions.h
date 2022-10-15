@@ -1,9 +1,13 @@
 #include "stdio.h"
+#include "math.h"
+#include "stdlib.h"
 
 typedef enum bool{
     false,
     true
 }bool;
+
+int get_int_len (int value);
 
 bool A1(long long N);
 bool A2(long long N);
