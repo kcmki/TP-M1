@@ -72,10 +72,97 @@ void rapide(int tab[]){
 
 }
 
-void fusion(int tab[]){
+void triFusionList(int tab[],int size){
+    list diviser(int tab[],int debut,int size){
+        if(size == 0)   return NULL
+        if(size == 1)   return newList(tab[debut]);
+
+        return fusion(diviser(tab,debut,(size/2 + size % 2)),diviser(tab,debut + size/2,size/2));
+        
+
+    }
+
+    list fusion(list L1,list L2){
+        if(L1 == NULL){
+            return L2;
+        }else if(L2 == NULL){
+            return L1;
+        }else if( L)
+    }
+
+    list Li = diviser(tab);
+}*/
+
+
+void fusion(int tab[],int debut,int fin,int temp[]){
+    if(fin <= debut){return;}
+    
+    int millieu = ( debut + fin ) / 2;
+
+    fusion(tab,debut,millieu,temp);
+    fusion(tab,millieu+1,fin,temp);
+
+    int tg = debut;
+    int td = millieu+1;
+    for (int i = debut; i <= fin; i++)
+    {   
+        if(tg > millieu){
+            temp[i] = tab[td];
+            td++;
+        }else if(td > fin){
+            temp[i] = tab[tg];
+            tg++;
+        }else if(tab[tg] > tab[td]){
+            temp[i] = tab[td];
+            td++;
+        }else{
+            temp[i] = tab[tg];
+            tg++;
+        }
+    }
+    for (int i = debut; i <= fin; i++)
+    {
+        tab[i] = temp[i];
+    }
 
 }
 
-void tas(int tab[]){
 
-} */
+void tas(int tab[],int size){
+    void tamisser(int tab[],int index,int limite){
+
+        int filsgauche = index*2 + 1;
+        int filsdroit = filsgauche+1;
+
+        if(filsgauche < limite) tamisser(tab,filsgauche,limite);
+        if(filsdroit < limite) tamisser(tab,filsdroit,limite);
+
+        if(filsgauche <= limite){
+            if(tab[filsgauche] > tab[index]){
+                int temp = tab[index];
+                tab[index] = tab[filsgauche];
+                tab[filsgauche] = temp;
+            }
+        }
+        if(filsdroit <= limite){
+            if(tab[filsdroit] > tab[index]){
+                int temp = tab[index];
+                tab[index] = tab[filsdroit];
+                tab[filsdroit] = temp;
+            }
+        }
+    }
+
+    int limite = size;
+    for (int i = 0; i < size; i++)
+    {
+        tamisser(tab,0,limite);
+
+        int temp = tab[0];
+        tab[0]  = tab[limite];
+        tab[limite] = temp;
+
+        limite--;
+    }
+
+}
