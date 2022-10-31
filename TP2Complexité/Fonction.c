@@ -1,4 +1,4 @@
-#include "fonction.h"
+#include "Fonction.h"
 
 void swap(int tab[],int min, int i){
     int temp = tab[min];
@@ -165,4 +165,103 @@ void tas(int tab[],int size){
         limite--;
     }
 
+}
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+void tri_selection(int tab[], int nbr_element){
+	int tmp;
+	for(int i=0;i<nbr_element-1;i++){
+		for(int j=i+1;j<nbr_element;j++){
+			if(tab[j] < tab[i]){
+				tmp = tab[i];
+				tab[i] = tab[j];
+				tab[j] = tmp;
+			}
+		}
+	}
+}
+
+void tri_insertion(int tab[], int nbr_element){
+	int element,j;
+	for(int i=0;i<nbr_element;i++){
+		element = tab[i];
+		j = i;
+		while(j>0 && tab[j-1]>element){
+			tab[j] = tab[j-1];
+			j -= 1;
+		}
+		tab[j] = element;
+	}
+}
+
+void tri_bulle(int tab[], int nbr_element){
+	int tmp;
+	int i = nbr_element - 1;
+	while(i>=1){
+		for(int j=0;j<=i-1;j++){
+			if(tab[j+1]<tab[j]){
+				tmp = tab[j];
+				tab[j] = tab[j+1];
+				tab[j+1] = tmp;
+			}
+		}
+		i-=1;
+	}
+}
+
+int tri_rapide_permutation(int tab[],int first,int last){
+	int i = first - 1;
+	int j = last;
+	int tmp;
+
+	while(1){
+		do{
+			i += 1;
+		}while(tab[i] < tab[last]);
+
+		do{
+			j -= 1;
+		}while((j > first) && (tab[last] < tab[j]));
+
+		if(i >= j)
+			break;
+
+		tmp = tab[i];
+		tab[i] = tab[j];
+		tab[j] = tmp;
+	}
+
+	tmp = tab[i];
+	tab[i] = tab[last];
+	tab[last] = tmp;
+
+	return i;
+}
+
+int tri_rapide_pivot(int first,int last){
+	srand(time(0));
+	int num = (rand() % (last - first + 1) + first);
+	return num;
+}
+
+void tri_rapide(int tab[],int first, int last){
+	int i,p,tmp;
+
+	if(last > first){
+		p = tri_rapide_pivot(first,last);
+
+		tmp = tab[p];
+		tab[p] = tab[last];
+		tab[last] = tmp;
+
+		i = tri_rapide_permutation(tab,first,last);
+
+		tri_rapide(tab,first,i-1);
+		tri_rapide(tab,i+1,last);
+	}
 }
