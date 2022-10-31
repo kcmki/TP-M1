@@ -1,5 +1,5 @@
 /*se connecter à SQLPlus avec l'utilisateur system*/
-connect system/psw
+connect system/mekki123
 /*Partie I : Création des TablesSpaces et des utilisateurs*/
 /*--- création des tablespace-------------*/
 /*si les tablespaces existent déjà voici la commande pour les supprimer
@@ -8,25 +8,32 @@ drop tablespace nom de tablespace including contents and datafiles;
 /*si l'utilsateur existe déjà voici la commande pour le supprimer
 drop user nom utilisateur cascade;
 */
-create tablespace intervention_tbs datafile 'c:\intervention_tbs.dat' 
-size 100M autoextend on online;
-create temporary tablespace intervention_temptbs 
-tempfile 'c:\intervention_temptbstbs.dat' size 100M autoextend on;
+create tablespace intervention_tbs datafile 'c:\intervention_tbs.dat' size 100M autoextend on online;
+\
+create temporary tablespace intervention_temptbs tempfile 'c:\intervention_temptbstbs.dat' size 100M autoextend on;
+\
 /*--- création de l'utilisateur------------*/
-create user dbaintervention identified by psw 
+create user dbaintervention identified by mekki123 
 default tablespace intervention_tbs 
 temporary tablespace intervention_temptbs ;
+\
 /*vérfier la création*/
 desc dba_users;
+\
 select username, created from dba_users where username=upper('dbaintervention');
+\
 /*---- accorder les touts les droits----------*/
 grant all privileges to dbaintervention ;
+\
 /*--- connexion avec l'utilisateur dbaintervention*/
-connect dbaintervention/psw
+connect dbaintervention/mekki123
+\
 /*vérfier la connexion*/
 show user;
+\
 ---modifier le format date 
 alter session set nls_date_format = 'DD/MM/RRRR HH24:MI:SS';
+\
 /*----création des tables de la BD--------------*/
 ---table client
 create table CLIENT (NUMCLIENT integer, CIV varchar2(3),
