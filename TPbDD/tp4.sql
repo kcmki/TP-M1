@@ -76,7 +76,7 @@ EXECUTE Augmentation_salaire;
 CREATE OR REPLACE PROCEDURE Verification(AN VEHICULE.ANNEE%type)
 AS
 cursor cr is select V.annee,V.numVehicule,dateDebinterv,dateFininterv  
-FROM Interventions I, Vehicule V 
+FROM INTERVENTIONS I, Vehicule V 
 WHERE I.numVehicule = V.numVehicule AND V.annee =AN;
 
 c cr%rowtype;
@@ -142,19 +142,19 @@ SELECT Nombre_interv(59) from dual;
 /** 5 **/
 
 
-CREATE OR REPLACE PROCEDURE Ajout_interv(num Interventions.numIntervention %type,numv INTERVENTIONS.NUMVEHICULE%type , t Interventions.typeIntervention%type ,dd Interventions.dateDebinterv%type , df Interventions.dateFininterv%type ,cout Interventions.coutInterv%type )
+CREATE OR REPLACE PROCEDURE Ajouter(num INTERVENTIONS.numIntervention %type,numv INTERVENTIONS.NUMVEHICULE%type , t INTERVENTIONS.typeIntervention%type ,dd INTERVENTIONS.dateDebinterv%type , df INTERVENTIONS.dateFininterv%type ,cout INTERVENTIONS.coutInterv%type )
 AS
-cursor cr1 is SELECT numIntervention ,COUNT(*) AS N1 FROM Interventions WHERE numIntervention = num GROUP BY numIntervention;
-cursor cr2 is SELECT numVehicule,COUNT(*) AS N2 FROM Vehicule  WHERE numVehicule = numv GROUP BY numVehicule;
+	cursor cr1 is SELECT numIntervention ,count(*) AS N1 FROM INTERVENTIONS WHERE numIntervention = num GROUP BY numIntervention;
+	cursor cr2 is SELECT numVehicule,count(*) AS N2 FROM Vehicule  WHERE numVehicule = numv GROUP BY numVehicule;
 
-c1 cr1%rowtype;
-c2 cr2%rowtype;
+	c1 cr1%rowtype;
+	c2 cr2%rowtype;
 
-i binary_integer;
-j binary_integer;
+	i binary_integer;
+	j binary_integer;
 
-vide1 exception;
-vide2 exception;
+	vide1 exception;
+	vide2 exception;
 
 BEGIN
 i := 0;
@@ -173,7 +173,7 @@ then
 	
 	if(j > 0)
 	then
-		INSERT INTO Interventions (numIntervention ,numVehicule ,typeIntervention ,dateDebinterv ,dateFininterv ,coutInterv ) VALUES (num , numv , t , dd , df , cout);
+		INSERT INTO INTERVENTIONS (numIntervention ,numVehicule ,typeIntervention ,dateDebinterv ,dateFininterv ,coutInterv ) VALUES (num , numv , t , dd , df , cout);
 		dbms_output.put_line('Intervention ajouté ! ');
 	else
 		dbms_output.put_line('ERREUR : violation de la clé étrangère');
