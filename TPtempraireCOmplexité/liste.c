@@ -63,7 +63,7 @@ void printtab(float tab[],int size){
     printf("Tableau : ");
     for (int i = 0; i < size; i++)
     {
-        printf("[%f]",tab[i]);
+        printf(" size,time : %d => [%f]\n",1000*(i+1),tab[i]);
     }
     printf("\n");
 }
