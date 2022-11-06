@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /* TP 3 */
 /*BELAISSAOUI Mohamed Elmekki 191931063467*/
 /*1---------------------------------------------*/
@@ -33,8 +32,6 @@ DESC USER_TAB_COLUMNS;
 
 conn DBAINTERVENTION/mekki123
 SELECT TABLE_NAME  FROM USER_TABLES;
-=======
->>>>>>> 5048c148621aa39621549f3870ef5cd44a913ff2
 
 /*6---------------------------------------------*/
 

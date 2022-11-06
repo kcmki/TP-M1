@@ -16,6 +16,7 @@ list newElem(int nb){
         return NULL;
     }
     new->nombre = nb;
+    new->svt = NULL;
     return new;
 }
 
@@ -29,8 +30,7 @@ void printlist(list l){
     printf("\n");
 }
 
-void ajoutsuivant(list* l,int nb)
-{
+void ajoutsuivant(list* l,int nb){
     list temp = *l;
     if(temp == NULL){
         *l = newElem(nb);
@@ -59,22 +59,44 @@ int maxList(list* l){
     }
     return max;
 }
-
+void printtab(float tab[],int size){
+    printf("Tableau : ");
+    for (int i = 0; i < size; i++)
+    {
+        printf("[%f]",tab[i]);
+    }
+    printf("\n");
+}
+#define SIZE 100
+#define NBTRY 10
 int main(int argc,char** argz){
     
     list L = NULL;
-    list tab[100];
+    list tab[SIZE] = {NULL};
     srand(time(0));
-    for (int i = 0; i < 100; i++)
+    for (int i = 0; i < SIZE; i++)
     {   
-        for (int j = 0; j < 10; j++)
+        for (int j = 0; j < 1000*(i+1); j++)
         {
-            tab[i] = ajoutsuivant(rand())
+            ajoutsuivant(&(tab[i]),rand());
         }
     }
-    printlist(L);
-
-    printf("Max liste : %d\n",maxList(&L));
+    float temp[SIZE] = {0};
+    clock_t Tdebut,Tfin;
+    int max = 0;
+    for (int i = 0; i < SIZE; i++)
+    {   
+        for (int j = 0; j < NBTRY; j++)
+            {
+                Tdebut = clock();
+                max =maxList(&(tab[i]));
+                Tfin = clock();
+                temp[i] += (float)(Tfin - Tdebut) / CLOCKS_PER_SEC;
+                
+            }
+        temp[i] = temp[i] / NBTRY;
+    }
+    printtab(temp,SIZE);
 
     return 0;
 }
