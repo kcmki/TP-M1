@@ -60,6 +60,8 @@ begin
     UPDATE EMPLOYE SET TOTAL_INTERVENTIONS = TOTAL_INTERVENTIONS+1;
 end;
 
+
+/*---------------------------------------------------------------*/
 CREATE TABLE CHIFFRE_AFFAIRE(
     MOIS INTEGER IN (1,2,3,4,5,6,7,8,9,10,11,12),
     ANNEE INTEGER,
@@ -73,8 +75,20 @@ CREATE OR REPLACE TRIGGER CHIFFRE_AFFAIRE
 AFTER
 INSERT ON INTERVENTIONS
 FOR EACH ROW 
+declare
+    cursor crCA is SELECT * FROM CHIFFRE_AFFAIRE WHERE mois = EXTRACT(month FROM new.DATEFININTERV) AND ANNEE = EXTRACT(year FROM new.DATEFININTERV);
+    cr1 DATEFININTERV%rowtype
+    is_found_rec boolean = false;
 begin
-  
+
+    for cr1 in crCA loop
+        is_found_rec = true;
+        UPDATE CHIFFRE_AFFAIRE SET TOTAL_GAINS = TOTAL_GAINS + new.COUTINTERV WHERE mois = cr.mois AND annee = cr.annee;
+    end loop
+
+    if not is_found_rec THEN
+        INSERT INTO CHIFFRE_AFFAIRE VALUES (EXTRACT(month FROM new.DATEFININTERV),EXTRACT(year FROM new.DATEFININTERV),new.COUTINTERV);
+    end if
 end;
 
 
