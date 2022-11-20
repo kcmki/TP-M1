@@ -102,5 +102,5 @@ int main(int argc,char** argsv){
     }
     Tfin = clock();
 
-    printf("temp d'execution algo %d - taille %d : %f",choix,nombre,(float)(Tfin - Tdebut) / CLOCKS_PER_SEC);
+    printf("temp d'execution algo %d - taille %d : %f\n",choix,nombre,(float)(Tfin - Tdebut) / CLOCKS_PER_SEC);
 }

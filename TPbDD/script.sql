@@ -35,3 +35,46 @@ BEGIN
 
 END;
 /
+CREATE OR REPLACE TRIGGER IntervEmp 
+BEFORE 
+INSERT ON Intervenant
+FOR EACH ROW 
+InterV INTERVENTIONS%rowtype;
+begin
+        SELECT * INTO InterV FROM INTERVENTIONS WHERE numIntervention = :new.numIntervention;
+        IF(InterV.dateDebinterv > :new.datedebut or InterV.dateFininterv < :new.datefin) THEN
+            raise_application_error(20100,'Erreur date intervenant invalide');
+        end if
+   IF
+end;
+
+
+UPDATE EMPLOYE e SET TOTAL_INTERVENTION = (SELECT count(*) FROM INTERVENANT WHERE numemploye = e.numeploye GROUP BY numemploye);
+
+
+CREATE OR REPLACE TRIGGER TOTAL_INTERVENTIONS_TRIGGER 
+AFTER 
+INSERT ON Intervenant
+FOR EACH ROW 
+begin
+    UPDATE EMPLOYE SET TOTAL_INTERVENTIONS = TOTAL_INTERVENTIONS+1;
+end;
+
+CREATE TABLE CHIFFRE_AFFAIRE(
+    MOIS INTEGER IN (1,2,3,4,5,6,7,8,9,10,11,12),
+    ANNEE INTEGER,
+    TOTAL_GAINS INTEGER,
+
+    CONSTRAINT PK_CA PRIMARY KEY (MOIS,ANNEE)
+);
+
+/* Extract pour extraire le mois / année de la date */
+CREATE OR REPLACE TRIGGER CHIFFRE_AFFAIRE 
+AFTER
+INSERT ON INTERVENTIONS
+FOR EACH ROW 
+begin
+  
+end;
+
+
