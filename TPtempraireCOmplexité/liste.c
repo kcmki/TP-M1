@@ -42,6 +42,11 @@ void ajoutsuivant(list* l,int nb){
 
     temp->svt = newElem(nb);
 }
+void ajouttete(list* l,int nb){
+    list temp = newElem(nb);
+    temp->svt = *l;
+    *l = temp;
+}
 
 int maxList(list* l){
     list temp = *l;

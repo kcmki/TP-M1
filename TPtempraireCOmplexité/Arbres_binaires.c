@@ -15,15 +15,6 @@ int equalBTreesREC(BTree bt1, BTree bt2){
     }
     return 0;
 }
-int isSubBTreeREC(BTree sbt, BTree bt){
-    if(sbt == NULL){
-        printf("sous arbre vide erreur");
-        exit(-1);
-    }
-    if(bt == NULL) return 0;
-    return equalBTreesREC(sbt,bt) + isSubBTreeREC(sbt,bt->right) + isSubBTreeREC(sbt,bt->left);
-}
-
 int equalBTreesIter(BTree bt1, BTree bt2){
     BTree Pile1[100] = {NULL};
     BTree Pile2[100] = {NULL};
@@ -59,7 +50,14 @@ int equalBTreesIter(BTree bt1, BTree bt2){
     }
     return 0;
 }
-
+int isSubBTreeREC(BTree sbt, BTree bt){
+    if(sbt == NULL){
+        printf("sous arbre vide erreur");
+        exit(-1);
+    }
+    if(bt == NULL) return 0;
+    return equalBTreesREC(sbt,bt) + isSubBTreeREC(sbt,bt->right) + isSubBTreeREC(sbt,bt->left);
+}
 int isSubBTreeIter(BTree sbt, BTree bt){
 
     BTree Pile1[100] = {NULL};
@@ -87,7 +85,80 @@ int isSubBTreeIter(BTree sbt, BTree bt){
     }
 
 }
+//-----------------------Part2
 
+int findElemREC(BTree bt1, int elem){
+    if(bt1 != NULL){
+        if(bt1->elem == elem){
+            return 1;
+        }else{
+            return findElemREC(bt1->left,elem) + findElemREC(bt1->right,elem);
+        }
+    }
+    return 0;
+}
+int findElemIter(BTree bt1,Element elem){
+    BTree Pile1[100] = {NULL};
+    int iP = -1;
+
+    if(bt1 == NULL) return 0;
+    
+    while(bt1 != NULL){
+        if(bt1->elem == elem) return 1;
+        if(bt1->right != NULL){
+            iP++;
+            Pile1[iP] = bt1->right;
+        }
+        if(bt1->left != NULL ){
+            bt1 = bt1->left;
+        }else if(bt1->left == NULL){
+            if(iP == -1) return 0;
+            else{
+                bt1 = Pile1[iP];
+                iP--;
+            }
+        }
+        }
+}
+int findMinREC(BTree bt){
+    int left,right,min;
+    if(bt->left == NULL && bt->right == NULL){
+        return bt->elem;
+    }
+    if(bt->left != NULL)  left = findMinREC(bt->left);
+    if(bt->right != NULL)  right = findMinREC(bt->right);
+    if(bt->left == NULL)  left = right;
+    if(bt->right == NULL)  right = left;
+
+    if(left > right)  min = right;
+    else  min = left;
+
+    if(min < bt->elem) return min;
+    else return bt->elem;
+
+}
+int findMinIter(BTree bt1){
+    BTree Pile1[100] = {NULL};
+    int iP = -1;
+    int min = bt1->elem;
+    
+    while(bt1 != NULL){
+        if(bt1->elem < min) min = bt1->elem;
+        if(bt1->right != NULL){
+            iP++;
+            Pile1[iP] = bt1->right;
+        }
+        if(bt1->left != NULL ){
+            bt1 = bt1->left;
+        }else if(bt1->left == NULL){
+            if(iP == -1) return min;
+            else{
+                bt1 = Pile1[iP];
+                iP--;
+            }
+        }
+        }
+}
 
 
 int main(int argc,char **argv){
@@ -113,5 +184,6 @@ int main(int argc,char **argv){
         insertLeft(B2->right,7);
 
     //test des fonctions
-    printf("result %d",isSubBTreeIter(B1->right,B2));
+    printf("result %d",findMinIter(B1));
 }
+

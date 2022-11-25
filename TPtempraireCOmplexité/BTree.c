@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "BTree.h"
- 
+
 
 void errorB(char *s){
 	fprintf(stderr, "%s", s);
@@ -19,7 +19,7 @@ BTree makeEmptyBTree(void){
 
 BTree makeNode(Element e, BTree l,  BTree r){
 	BTree new;
-	if ((new=(BTree)malloc(sizeof(Node)))==NULL) errorB("Allocation ratée!");
+	if ((new=(BTree)malloc(sizeof(Node)))==NULL) errorB("Allocation ratï¿½e!");
 	new->elem=e;
 	new->left=l;
 	new->right=r;
@@ -36,7 +36,7 @@ int isEmptyBTree(BTree bt){
 }
 
 Element root(BTree bt){
-	if(isEmptyBTree(bt)) errorB("Pas de noeud à la racine d'un arbre vide!!!");
+	if(isEmptyBTree(bt)) errorB("Pas de noeud ï¿½ la racine d'un arbre vide!!!");
 	return bt->elem;
 }
 
@@ -120,4 +120,54 @@ Element deleteLeftmostNode(BTree *bt){
 		tmp->left=(tmp->left)->right;
 	}
 	return res;
+}
+
+
+/*****************************************************************************/
+/**************************** fonctions de liste *****************************/
+/*****************************************************************************/
+
+typedef struct elem{
+    int nombre;
+    struct elem* svt;
+}elem , *list;
+
+list newElem(int nb){
+    list new = malloc(sizeof(elem));
+    if(new == NULL){
+        printf("Erreur allocation memoire");
+        exit(-1);
+        return NULL;
+    }
+    new->nombre = nb;
+    new->svt = NULL;
+    return new;
+}
+
+void printlist(list l){
+    list temp = l;
+    printf("List : ");
+    while(temp != NULL){
+        printf("%d->",temp->nombre);
+        temp = temp->svt;
+    }
+    printf("\n");
+}
+
+void ajoutsuivant(list* l,int nb){
+    list temp = *l;
+    if(temp == NULL){
+        *l = newElem(nb);
+        return;
+    }
+    while(temp->svt != NULL){
+        temp = temp->svt;
+    }
+
+    temp->svt = newElem(nb);
+}
+void ajouttete(list* l,int nb){
+    list temp = newElem(nb);
+    temp->svt = *l;
+    *l = temp;
 }
