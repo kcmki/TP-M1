@@ -167,23 +167,26 @@ int main(int argc,char **argv){
     B2 = makeLeaf(5);
 
     //creation B1
-    insertRight(B1,8);
-    insertLeft(B1,2);
-        insertRight(B1->left,3);
-        insertLeft(B1->left,1);
+        insertRight(B1,8);
+        insertLeft(B1,2);
+            insertRight(B1->left,3);
+            insertLeft(B1->left,1);
 
-        insertRight(B1->right,9);
-        insertLeft(B1->right,7);
+            insertRight(B1->right,9);
+            insertLeft(B1->right,7);
     //creation B2
-    insertRight(B2,8);
-    insertLeft(B2,2);
-        insertRight(B2->left,3);
-        insertLeft(B2->left,1);
+        insertRight(B2,8);
+        insertLeft(B2,2);
+            insertRight(B2->left,3);
+            insertLeft(B2->left,1);
 
-        insertRight(B2->right,9);
-        insertLeft(B2->right,7);
+            insertRight(B2->right,9);
+            insertLeft(B2->right,7);
 
+    
     //test des fonctions
-    printf("result %d",findMinIter(B1));
+    printf("result equal tree rec :%d \n",equalBTreesREC(B1,B2));
+    printf("result equal tree iter :%d \n",equalBTreesIter(B1,B2));
+    printf("result sub tree rec : %d \n",isSubBTreeREC(B1->right,B2));
+    printf("result sub tree iter : %d \n",isSubBTreeIter(B1->right,B2));
 }
-

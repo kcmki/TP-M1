@@ -69,7 +69,24 @@ CREATE TABLE CHIFFRE_AFFAIRE(
 
     CONSTRAINT PK_CA PRIMARY KEY (MOIS,ANNEE)
 );
+CREATE PROCEDURE init_CA()
+AS
+    cursor crCA is SELECT * FROM INTERVENTIONS;
+    cr1 INTERVENTIONS%rowtype;    
+    CA CHIFFRE_AFFAIRE%rowtype;
 
+begin
+    for cr1 in crCA loop
+        SELECT * INTO CA FROM CHIFFRE_AFFAIRE WHERE mois = EXTRACT(month FROM cr1.DATEFININTERV) AND ANNEE = EXTRACT(year FROM cr1.DATEFININTERV); 
+
+        IF CA THEN
+            UPDATE CHIFFRE_AFFAIRE SET TOTAL_GAINS = TOTAL_GAINS + new.COUTINTERV WHERE mois = CA.mois AND annee = CA.annee;
+        else
+            INSERT INTO CHIFFRE_AFFAIRE VALUES (EXTRACT(month FROM cr1.DATEFININTERV),EXTRACT(year FROM cr1.DATEFININTERV),cr1.COUTINTERV);
+        end if
+    end loop
+
+end;
 /* Extract pour extraire le mois / année de la date */
 CREATE OR REPLACE TRIGGER CHIFFRE_AFFAIRE 
 AFTER

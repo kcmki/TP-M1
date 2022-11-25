@@ -1,0 +1,8 @@
+
+Equal: 
+    n
+SubTree:
+
+    M SubTree
+    N MainTree
+        meilleur cas M et moyen,pire N*M
