@@ -127,12 +127,9 @@ Element deleteLeftmostNode(BTree *bt){
 /**************************** fonctions de liste *****************************/
 /*****************************************************************************/
 
-typedef struct elem{
-    int nombre;
-    struct elem* svt;
-}elem , *list;
+list newElem(BTree nb){
+	if(nb == NULL) return NULL;
 
-list newElem(int nb){
     list new = malloc(sizeof(elem));
     if(new == NULL){
         printf("Erreur allocation memoire");
@@ -143,18 +140,16 @@ list newElem(int nb){
     new->svt = NULL;
     return new;
 }
-
 void printlist(list l){
     list temp = l;
     printf("List : ");
     while(temp != NULL){
-        printf("%d->",temp->nombre);
+        printf("%d->",temp->nombre->elem);
         temp = temp->svt;
     }
     printf("\n");
 }
-
-void ajoutsuivant(list* l,int nb){
+void ajoutsuivant(list* l,BTree nb){
     list temp = *l;
     if(temp == NULL){
         *l = newElem(nb);
@@ -166,8 +161,16 @@ void ajoutsuivant(list* l,int nb){
 
     temp->svt = newElem(nb);
 }
-void ajouttete(list* l,int nb){
+void ajouttete(list* l,BTree nb){
     list temp = newElem(nb);
     temp->svt = *l;
     *l = temp;
+}
+BTree poptete(list* l){
+	BTree temp = NULL;
+	if(*l != NULL){
+	temp = (*l)->nombre;
+	(*l) = (*l)->svt;
+	}
+	return temp;
 }

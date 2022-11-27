@@ -160,6 +160,27 @@ int findMinIter(BTree bt1){
         }
 }
 
+void printLargIter(BTree bt,list L){
+    if(bt != NULL & L == NULL){
+        ajoutsuivant(&L,bt);
+    }
+    while(bt != NULL || L != NULL){
+        bt = poptete(&L);
+        if(bt != NULL) printf("%d",bt->elem);
+        if(bt->left != NULL) ajoutsuivant(&L,bt->left);
+        if(bt->right != NULL) ajoutsuivant(&L,bt->right);
+    }
+}
+
+void printLargREC(BTree bt,list L){
+    if(bt != NULL){
+        printf("%d",bt->elem);
+        if(bt->left != NULL) ajoutsuivant(&L,bt->left);
+        if(bt->right != NULL) ajoutsuivant(&L,bt->right);
+        bt = poptete(&L);
+        printLargREC(bt,L);
+    }
+}
 
 int main(int argc,char **argv){
     BTree B1,B2;
@@ -185,8 +206,6 @@ int main(int argc,char **argv){
 
     
     //test des fonctions
-    printf("result equal tree rec :%d \n",equalBTreesREC(B1,B2));
-    printf("result equal tree iter :%d \n",equalBTreesIter(B1,B2));
-    printf("result sub tree rec : %d \n",isSubBTreeREC(B1->right,B2));
-    printf("result sub tree iter : %d \n",isSubBTreeIter(B1->right,B2));
+    list L = NULL;
+    printLargIter(B1,L);
 }

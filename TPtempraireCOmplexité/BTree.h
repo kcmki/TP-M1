@@ -21,6 +21,12 @@ typedef struct node{
 
 // Type des arbres.
 typedef Node *BTree;
+// Type listes
+
+typedef struct elem{
+    BTree nombre;
+    struct elem* svt;
+}elem , *list;
 
 /*****************************************************************************/
 /**************************** fonctions de base ******************************/
@@ -86,5 +92,16 @@ void insertRightmostNode(BTree *bt, Element e);
 // Provoque une erreur si *bt est vide. Peut supprimer la racine si elle est le noeud le plus à gauche.
 Element deleteLeftmostNode(BTree *bt);
 
+
+
+/*****************************************************************************/
+/*************************** fonctions des listes ****************************/
+/*****************************************************************************/
+
+list newElem(BTree nb);
+void printlist(list l);
+void ajoutsuivant(list* l,BTree nb);
+void ajouttete(list* l,BTree nb);
+BTree poptete(list* l);
 
 #endif
