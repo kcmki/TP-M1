@@ -5,8 +5,9 @@
 
 typedef struct{
     int** tours;
-    int i1,i2,i3,size;
+    int indice[3],size;
 }*Hanoi,hanoi;
 
 Hanoi initTour(int size);
 void printHanoi(Hanoi T);
+void HanoiREC(Hanoi T,int gros,int petit,int t1,int t2);
