@@ -207,5 +207,5 @@ int main(int argc,char **argv){
     
     //test des fonctions
     list L = NULL;
-    printLargIter(B1,L);
+    printLargREC(B1,L);
 }
