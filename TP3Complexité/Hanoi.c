@@ -3,7 +3,6 @@ char* getName(char* str);
 
 int main(int argc,char** argv){
     //vérification du nombre d'arguments
-
         if(argc <4 || argc >4){
             printf("Too many or few arguments\n");
             printf("%s <#disques> <Choix algo> <Destination>",getName(argv[0]));

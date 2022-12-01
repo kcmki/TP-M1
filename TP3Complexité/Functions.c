@@ -39,6 +39,7 @@ Hanoi initTour(int size){
 }
 
 //affiche les tours
+
 void printHanoi(Hanoi T){
     printf("\nTours de Hanoi\n");
     for (int i = T->size - 1 ; i >= 0; i--)
@@ -49,8 +50,8 @@ void printHanoi(Hanoi T){
     printf("[%d] [%d] [%d]\n",T->indice[0],T->indice[1],T->indice[2]);
 }
 
-
 //déplace le disque de T1 vers T2
+
 void deplacer(Hanoi  T,int t1,int t2){
 
     int adep = T->tours[t1][T->indice[t1]];
@@ -63,7 +64,9 @@ void deplacer(Hanoi  T,int t1,int t2){
     //printHanoi(T);
     //verification(T);
 }
+
 //Solution récursive
+
 void HanoiREC(Hanoi T,int gros,int petit,int t1,int t2){   
     int mid = t1+t2;
 
@@ -280,6 +283,8 @@ void HanoiIter2(Hanoi T,int t1,int t2){
         }
     } 
 }
+
+//algorithme de vérification
 
 void verification(Hanoi T){
     int old;

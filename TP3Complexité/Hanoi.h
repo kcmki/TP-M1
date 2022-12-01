@@ -23,6 +23,7 @@ void printHanoi(Hanoi T);
 //jusqu'a arriver a un probleme assez simple pour etre résolu directement 
 //méthode diviser pour mieux regner 
 void HanoiREC(Hanoi T,int gros,int petit,int t1,int t2);
+
 //******************************************************************************
 //algo implémenté 
 //  For an even (pair) number of disks:
