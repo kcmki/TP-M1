@@ -18,35 +18,46 @@ int main(int argc,char** argv){
 
     //vérification des valeurs des arguments
         if(choix >3 || choix <1){
-            printf("choix doit etre 1(Recursive) 2(Iterative) ou 3(Iterative oprimale)");
+            printf("choix doit etre 1(Recursive) 2(Iterative) ou 3(Iterative2)");
             return 0;
         }
         if(toTour != 2 && toTour != 3){
             printf("Tour doit etre 2 ou 3");
             return 0;
         }
-        
-    //execution des algorithme et affichage
+
+    //execution des algorithme et calcule du temp d'execution
         debut = clock();
         switch (choix)
         {
             case 1:
                 HanoiREC(tour,tour->size,1,0,toTour-1);
-                printf("Solution recursive : ");
                 break;
             case 2:
                 HanoiIter(tour,0,toTour-1);
-                printf("Solution Iterative : ");
                 break;
             case 3:
-                HanoiIterOpt(tour,0,toTour-1);
-                printf("Solution Iterative optimale : ");
+                HanoiIter2(tour,0,toTour-1);
                 break;
         }
         fin = clock();
-    //affichage du temp d'execution
-        printf("%f s\n",(float)(fin - debut)/CLOCKS_PER_SEC);
-    printHanoi(tour);
+        
+    //affichage du temp d'execution et du resultat
+        printHanoi(tour);
+        verification(tour);
+        switch (choix)
+        {
+            case 1:
+                printf("Solution recursive : %f s\n",(float)(fin - debut)/CLOCKS_PER_SEC);
+                break;
+            case 2:
+                printf("Solution Iterative : %f s\n",(float)(fin - debut)/CLOCKS_PER_SEC);
+                break;
+            case 3:
+                printf("Solution Iterative second algorithme : %f s\n",(float)(fin - debut)/CLOCKS_PER_SEC);
+                break;
+        }
+
     return 0;
 }
 
