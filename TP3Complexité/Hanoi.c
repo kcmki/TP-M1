@@ -5,7 +5,7 @@ int main(int argc,char** argv){
     //vérification du nombre d'arguments
         if(argc <4 || argc >4){
             printf("Too many or few arguments\n");
-            printf("%s <#disques> <Choix algo> <Destination>",getName(argv[0]));
+            printf("%s <#disques> <Choix algo> <Destination>\n",getName(argv[0]));
             return 0;
         }
     //initialisation et déclarations des variables
@@ -17,11 +17,11 @@ int main(int argc,char** argv){
 
     //vérification des valeurs des arguments
         if(choix >3 || choix <1){
-            printf("choix doit etre 1(Recursive) 2(Iterative) ou 3(Iterative2)");
+            printf("choix doit etre 1(Recursive) 2(Iterative) ou 3(Iterative2)\n");
             return 0;
         }
         if(toTour != 2 && toTour != 3){
-            printf("Tour doit etre 2 ou 3");
+            printf("Déstination doit etre 2 ou 3\n");
             return 0;
         }
 

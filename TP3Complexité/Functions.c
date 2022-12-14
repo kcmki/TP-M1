@@ -1,8 +1,5 @@
 #include "Hanoi.h"
 
-
-
-
 //initialise le jeu
 Hanoi initTour(int size){
 

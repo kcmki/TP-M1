@@ -32,7 +32,7 @@ void HanoiREC(Hanoi T,int gros,int petit,int t1,int t2);
 //      make the legal move between pegs A and C (in either direction),
 //      make the legal move between pegs B and C (in either direction),
 //      repeat until complete.
-//  For an odd (impaair) number of disks:
+//  For an odd (impair) number of disks:
 //  
 //      make the legal move between pegs A and C (in either direction),
 //      make the legal move between pegs A and B (in either direction),
