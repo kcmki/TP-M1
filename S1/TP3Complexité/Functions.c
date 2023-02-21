@@ -58,8 +58,8 @@ void deplacer(Hanoi  T,int t1,int t2){
             
                (T->indice[t2])++;
                T->tours[t2][T->indice[t2]] = adep;
-    //printHanoi(T);
-    //verification(T);
+    printHanoi(T);
+    verification(T);
 }
 
 //Solution récursive
@@ -91,7 +91,20 @@ void HanoiREC(Hanoi T,int gros,int petit,int t1,int t2){
 }
 
 //Solution itérative
-
+    //algo implémenté 
+    //  For an even (pair) number of disks:
+    //  
+    //      make the legal move between pegs A and B (in either direction),
+    //      make the legal move between pegs A and C (in either direction),
+    //      make the legal move between pegs B and C (in either direction),
+    //      repeat until complete.
+    //  For an odd (impaair) number of disks:
+    //  
+    //      make the legal move between pegs A and C (in either direction),
+    //      make the legal move between pegs A and B (in either direction),
+    //      make the legal move between pegs B and C (in either direction),
+    //     repeat until complete.
+    //  In each case, a total of 2n − 1 moves are made. 
 void HanoiIter(Hanoi T,int t1,int t2){
     int mid = t1+t2;
     //recherche de la tour intermédiaire
@@ -106,20 +119,7 @@ void HanoiIter(Hanoi T,int t1,int t2){
                 mid = 0;
                 break;
         }
-        //algo implémenté 
-        //  For an even (pair) number of disks:
-        //  
-        //      make the legal move between pegs A and B (in either direction),
-        //      make the legal move between pegs A and C (in either direction),
-        //      make the legal move between pegs B and C (in either direction),
-        //      repeat until complete.
-        //  For an odd (impaair) number of disks:
-        //  
-        //      make the legal move between pegs A and C (in either direction),
-        //      make the legal move between pegs A and B (in either direction),
-        //      make the legal move between pegs B and C (in either direction),
-        //     repeat until complete.
-        //  In each case, a total of 2n − 1 moves are made. 
+
     //execution
     if(T->size%2){
         while (T->indice[t2] != ( T->size - 1 ))
@@ -202,11 +202,7 @@ void HanoiIter(Hanoi T,int t1,int t2){
         }
     }
 }
-
-void HanoiIter2(Hanoi T,int t1,int t2){
-     int mid = t1+t2;
-    
-    
+//Solution itérative 2
     // algorithme utilisé :
     //
     //  Number the disks 1 through n (largest to smallest).
@@ -219,7 +215,8 @@ void HanoiIter2(Hanoi T,int t1,int t2){
     //    No even disk may be placed directly on an even disk.
     //    There will sometimes be two possible pegs: one will have disks, and the other will be empty. Place the disk on the non-empty peg.
     //    Never move a disk twice in succession.
-
+void HanoiIter2(Hanoi T,int t1,int t2){
+     int mid = t1+t2;
     //recherche de la tour intermédiaire
         switch(mid){
             case 1:

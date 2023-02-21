@@ -42,7 +42,7 @@ int main(int argc,char** argv){
         fin = clock();
         
     //affichage du temp d'execution et du resultat
-        printHanoi(tour);
+        //printHanoi(tour);
         verification(tour);
         switch (choix)
         {

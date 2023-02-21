@@ -1,6 +1,18 @@
 #include "BTree.h"
 #include "stdio.h"
 #include "stdlib.h"
+#include <time.h>
+
+void genererArbre(BTree* bt,int i,int prof){
+    if(i < prof){
+        if(*bt == NULL){
+             *bt = makeLeaf(rand() % 10000);
+             }
+        i++;
+        genererArbre(&(*bt)->right,i,prof);
+        genererArbre(&(*bt)->left,i,prof);
+    }
+}
 
 int equalBTreesREC(BTree bt1, BTree bt2){
     if(bt1 == NULL && bt2 == NULL){
@@ -120,6 +132,7 @@ int findElemIter(BTree bt1,Element elem){
         }
         }
 }
+
 int findMinREC(BTree bt){
     int left,right,min;
     if(bt->left == NULL && bt->right == NULL){
@@ -164,7 +177,7 @@ void printLargIter(BTree bt,list L){
     if(bt != NULL & L == NULL){
         ajoutsuivant(&L,bt);
     }
-    while(bt != NULL || L != NULL){
+    while(L != NULL){
         bt = poptete(&L);
         if(bt != NULL) printf("%d",bt->elem);
         if(bt->left != NULL) ajoutsuivant(&L,bt->left);
@@ -174,7 +187,7 @@ void printLargIter(BTree bt,list L){
 
 void printLargREC(BTree bt,list L){
     if(bt != NULL){
-        printf("%d",bt->elem);
+        printf("[%d]",bt->elem);
         if(bt->left != NULL) ajoutsuivant(&L,bt->left);
         if(bt->right != NULL) ajoutsuivant(&L,bt->right);
         bt = poptete(&L);
@@ -182,30 +195,24 @@ void printLargREC(BTree bt,list L){
     }
 }
 
+
 int main(int argc,char **argv){
-    BTree B1,B2;
-    B1 = makeLeaf(5);
-    B2 = makeLeaf(5);
-
-    //creation B1
-        insertRight(B1,8);
-        insertLeft(B1,2);
-            insertRight(B1->left,3);
-            insertLeft(B1->left,1);
-
-            insertRight(B1->right,9);
-            insertLeft(B1->right,7);
-    //creation B2
-        insertRight(B2,8);
-        insertLeft(B2,2);
-            insertRight(B2->left,3);
-            insertLeft(B2->left,1);
-
-            insertRight(B2->right,9);
-            insertLeft(B2->right,7);
-
-    
-    //test des fonctions
+    BTree B1= NULL,B2 = NULL;
+    if(argc != 2){
+        printf("manque d'arguments");
+        exit(-1);
+    }
+    int profondeur = atoi(argv[1]);
+    genererArbre(&B1,0,profondeur);
     list L = NULL;
-    printLargREC(B1,L);
+
+
+    clock_t deb,fin;
+    deb = clock();
+    L = NULL;
+    printLargIter(B1,L);
+    printf("\n");
+    fin = clock();
+    printf("find iter %f\n",(float)(fin - deb) / CLOCKS_PER_SEC);
+
 }
