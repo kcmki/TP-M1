@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: D9D9D9;" stylesheets="@application/application.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <GridPane id="ChessBoard" layoutX="50.0" layoutY="50.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: FFFFFF;" styleClass="border-black" stylesheets="@application/application.css">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+      </GridPane>
+      <AnchorPane layoutX="450.0" prefHeight="600.0" prefWidth="450.0">
+         <children>
+            <RadioButton layoutX="125.0" layoutY="250.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="50.0" prefWidth="200.0" text="BFS                   " textFill="#3a3a3a">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+               <toggleGroup>
+                  <ToggleGroup fx:id="Algorithm" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton layoutX="125.0" layoutY="300.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="50.0" prefWidth="200.0" text="A* - H1()          " textFill="#3a3a3a" toggleGroup="$Algorithm">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </RadioButton>
+            <RadioButton layoutX="125.0" layoutY="350.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="50.0" prefWidth="200.0" text="A* - H2()          " textFill="#3a3a3a" toggleGroup="$Algorithm">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </RadioButton>
+            <Button layoutX="130.0" layoutY="426.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #5577EE;" text="Start" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="button-outer-shadows" />
+                  <String fx:value="button-radius" />
+               </styleClass>
+               <effect>
+                  <InnerShadow />
+               </effect>
+            </Button>
+            <Button layoutX="130.0" layoutY="426.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #5577EE;" styleClass="button-radius" text="Start" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+               <effect>
+                  <InnerShadow offsetY="4.0" radius="4.75" width="0.0">
+                     <color>
+                        <Color opacity="0.25" />
+                     </color>
+                  </InnerShadow>
+               </effect>
+            </Button>
+            <RadioButton layoutX="125.0" layoutY="200.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="50.0" prefWidth="200.0" text="DFS                   " textFill="#3a3a3a" toggleGroup="$Algorithm">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </RadioButton>
+            <TextField alignment="CENTER" layoutX="130.0" layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" promptText="t">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="button-radius" />
+                  <String fx:value="button-outer-shadows" />
+               </styleClass>
+            </TextField>
+            <TextField alignment="CENTER" layoutX="130.0" layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" promptText="N reines" styleClass="button-radius">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+               <effect>
+                  <InnerShadow offsetY="4.0" radius="4.75" width="0.0">
+                     <color>
+                        <Color opacity="0.25" />
+                     </color>
+                  </InnerShadow>
+               </effect>
+            </TextField>
+            <ProgressBar layoutX="130.0" layoutY="516.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" progress="0.3" style="-fx-border-radius: 20;" />
+         </children>
+      </AnchorPane>
+      <TextField alignment="CENTER" layoutX="150.0" layoutY="494.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" promptText="t">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+         <styleClass>
+            <String fx:value="button-radius" />
+            <String fx:value="button-outer-shadows" />
+         </styleClass>
+      </TextField>
+      <TextField alignment="CENTER_RIGHT" editable="false" layoutX="150.0" layoutY="494.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" promptText="Temp" style="-fx-padding: 0px 30px 0px 0px;" styleClass="button-radius" text="0.0">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+         <effect>
+            <InnerShadow offsetY="4.0" radius="4.75" width="0.0">
+               <color>
+                  <Color opacity="0.25" />
+               </color>
+            </InnerShadow>
+         </effect>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </TextField>
+      <Text fill="#3a3a3a" layoutX="326.0" layoutY="527.0" strokeType="OUTSIDE" strokeWidth="0.0" text="s">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
