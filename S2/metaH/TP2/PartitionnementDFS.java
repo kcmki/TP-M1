@@ -6,23 +6,35 @@ import java.util.Scanner;
 import java.util.Stack;
 
 public class PartitionnementDFS {
-
-    public static void dfs(int[] S, int index, int sum, int target, ArrayList<Integer> solution, ArrayList<ArrayList<Integer>> solutions) {
-        if (sum == target) {
+    public static int min;
+    public static void dfs(Integer[] S, int index, int sum, int total, ArrayList<Integer> solution, ArrayList<ArrayList<Integer>> solutions) {
+        if (abs(sum - (total - sum)) < min) {
+            solutions.clear();
             solutions.add(new ArrayList<>(solution));
-        } else if (sum < target && index < S.length) {
+            min = abs(sum - (total - sum));
+        }else if(abs(sum - (total - sum)) == min){
+            solutions.add(new ArrayList<>(solution));
+        }
+        
+        if (index < S.length && sum < total/2) {
             // inclure l'élément à l'indice index
             solution.add(S[index]);
-            dfs(S, index+1, sum+S[index], target, solution, solutions);
+            dfs(S, index+1, sum+S[index], total, solution, solutions);
             solution.remove(solution.size()-1);
             // exclure l'élément à l'indice index
-            dfs(S, index+1, sum, target, solution, solutions);
+            dfs(S, index+1, sum, total, solution, solutions);
         }
     }
     
+    private static int abs(int a) {
+        if(a < 0) {
+            return -a;
+        }
+        return a;
+    }
+
     public static void main(String[] args) {
         int choiceOfData = Integer.parseInt(args[0]);
-        System.out.println(choiceOfData);
         ArrayList<Integer> S = new ArrayList<>();
         try {
             File myObj = new File("dataset.txt");
@@ -35,7 +47,9 @@ public class PartitionnementDFS {
             for (String string : data.split(",")) {
                 S.add(Integer.parseInt(string.trim()));
             }
-            System.out.println(S);
+
+            System.out.println();
+
         myReader.close();
         } catch (FileNotFoundException e) {
         System.out.println("An error occurred.");
@@ -43,10 +57,20 @@ public class PartitionnementDFS {
         }
 
 
-        int[] S2 =  S.toArray();
-        int target = 5;
         ArrayList<ArrayList<Integer>> solutions = new ArrayList<>();
-        dfs(S2, 0, 0, target, new ArrayList<>(), solutions);
-        System.out.println(solutions); */
+        min = sum(S);
+        System.out.println(S);
+        dfs(S.toArray(Integer[]::new), 0, 0, min, new ArrayList<>(), solutions);
+        System.out.println("Les solutions : \n");
+        System.out.println(solutions);
+        System.out.println("La difference entre les sous tableau : "+min);
+    }
+
+    private static int sum(ArrayList<Integer> s) {
+        int sum = 0;
+        for (Integer integer : s) {
+            sum += integer;
+        }
+        return sum;
     }
 }
