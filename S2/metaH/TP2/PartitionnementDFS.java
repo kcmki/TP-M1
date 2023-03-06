@@ -62,7 +62,7 @@ public class PartitionnementDFS {
         dfs(S.toArray(Integer[]::new), 0, 0, min, new ArrayList<>(), solutions);
         System.out.println("Les solutions : \n");
         System.out.println(solutions);
-        System.out.println("La difference entre les sous tableau : "+min);
+        System.out.println("La difference entre les sous tableaux : "+min);
     }
 
     private static int sum(ArrayList<Integer> s) {
