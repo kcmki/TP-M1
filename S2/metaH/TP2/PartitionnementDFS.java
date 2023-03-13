@@ -14,7 +14,6 @@ public class PartitionnementDFS {
         }else if(abs(sum - (total - sum)) == min){
             solutions.add(new ArrayList<>(solution));
         }
-        
         if (index < S.length && sum < total/2) {
             // inclure l'élément à l'indice index
             solution.add(S[index]);

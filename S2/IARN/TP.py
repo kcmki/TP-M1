@@ -41,50 +41,14 @@ scaled_features = scaler.transform(X)
 Xt, Xtt, Yt, Ytt = train_test_split(
       scaled_features, Y, test_size = 0.30)
 
+print(y_pred)
+
 #Créer le modèle
 model= svm.SVC(kernel='linear') 
 # entrainement 
 model.fit(Xt, Yt)
 # Prediction
-y_pred = model.predict(Xtt)
+y_pred = model.predict_proba(Xtt)
 print(y_pred)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
