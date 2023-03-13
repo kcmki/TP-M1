@@ -22,4 +22,10 @@ public class Utils {
 		if(a.indexOf(charAt) != -1) return true;
 		return false;
 	}
+	public static void printArray(int[] x) {
+		for(int y : x) {
+			System.out.print(y);
+		}
+		System.out.print("\n");
+	}
 }
