@@ -1,7 +1,5 @@
 import numpy as np
 import pandas as pd
-import math
-import cv2 
 import matplotlib.pyplot as plt
 from numpy import random
 from sklearn.neural_network import MLPClassifier
@@ -40,15 +38,50 @@ scaler.fit(X)
 scaled_features = scaler.transform(X)
 Xt, Xtt, Yt, Ytt = train_test_split(
       scaled_features, Y, test_size = 0.30)
-
-print(y_pred)
-
-#Créer le modèle
-model= svm.SVC(kernel='linear') 
-# entrainement 
-model.fit(Xt, Yt)
+def svmtrain(Xt, Yt):
+    #Créer le modèle
+    model= svm.SVC(kernel='linear') 
+    # entrainement 
+    model.fit(Xt, Yt)
+    return model
+def knntrain(Xt, Yt):
+    #Créer le modèle
+    model= KNeighborsClassifier(n_neighbors=7) 
+    # entrainement 
+    model.fit(Xt, Yt)
+    return model
+def treetrain(Xt, Yt):
+    #Créer le modèle
+    model= DecisionTreeClassifier() 
+    # entrainement 
+    model.fit(Xt, Yt)
+    return model
+def mlptrain(Xt, Yt):
+    #Créer le modèle
+    model= MLPClassifier(solver='sgd', alpha=1e-5, hidden_layer_sizes=(25),max_iter=100000) 
+    # entrainement 
+    model.fit(Xt, Yt)
+    return model
+class ConfMatrix:
+    def __init__(self, ypred, Ytt):
+        self.matrice = np.matrix(np.zeros((10,10)))
+        for i in range(0, len(Ytt)):
+            self.matrice[ypred[i],Ytt[i]] += 1
+    def __str__(self):
+        return str(self.matrice)
+    def rappelCalcul(self, i):
+        TP,TN,FP,FN = 0,0,0,0
+        for i in range(0,10):
+            for j in range(0,10):
+                if i == j:
+                    TP += self.matrice[i,j]
+                else:
+                    FN += self.matrice[i,j]
+                    FP += self.matrice[j,i]
+    
 # Prediction
-y_pred = model.predict_proba(Xtt)
+model = svmtrain(Xt,Yt)
+y_pred = model.predict(Xtt)
+mat = ConfMatrix(y_pred, Ytt)
+print(mat)
 print(y_pred)
-
-
