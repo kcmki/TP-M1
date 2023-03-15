@@ -13,7 +13,7 @@ public class Solver {
 		this.DFS = new Solution(sol,end-start);
 		//BFS CALCULATION
 			start = System. currentTimeMillis();
-			sol = bfs(NombreReines);
+			//sol = bfs(NombreReines);
 			end = System. currentTimeMillis();
 		this.BFS = new Solution(sol,end-start);
 	}

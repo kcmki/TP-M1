@@ -1,0 +1,4 @@
+Nombre N ; Noeud epxloré ; noeud crée ; temp ; sol
+
+Comparer les solution en terme de temp / solution / généré / Parcouru
+

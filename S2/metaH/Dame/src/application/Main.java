@@ -33,12 +33,12 @@ public class Main extends Application {
 	}
 	
 	public static void main(String[] args) {
-		//launch(args);
-		int max = 8;
+		launch(args);
+		/*int max = 4;
 		Solver S = new Solver(max);
 		Utils.printArray(S.BFS.Solution.Queens);
 		System.out.println(S.BFS.elapsedTime);
 		Utils.printArray(S.DFS.Solution.Queens);
-		System.out.println(S.DFS.elapsedTime);
+		System.out.println(S.DFS.elapsedTime);*/
 	}
 }
