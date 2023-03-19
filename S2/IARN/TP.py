@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from numpy import random
+from numpy import random, sqrt
 from sklearn.neural_network import MLPClassifier
 from sklearn.model_selection import train_test_split
 from sklearn import svm
@@ -38,6 +38,43 @@ scaler.fit(X)
 scaled_features = scaler.transform(X)
 Xt, Xtt, Yt, Ytt = train_test_split(
       scaled_features, Y, test_size = 0.30)
+def eucledian(xt,x):
+    dist = []
+    for i in range(0,len(xt)):
+        dist.append(sqrt((xt[i]-x[i])*(xt[i]-x[i])))
+    return dist
+def proba(labels):
+    prob = []
+    print(labels)
+    for i in labels:
+        prob[labels[i]] += 1
+    print(prob)
+    return prob
+def predict(x_train, y , x, k):
+
+    #Array to store distances
+    point_dist = []
+    #Loop through each training Data
+    for j in range(len(x_train)): 
+        distances = eucledian(np.array(x_train[j,:]) , x) 
+        #print(np.array(x_train[j,:]))
+        #Calculating the distance
+        point_dist.append(distances)
+    point_dist = np.array(point_dist) 
+      
+    #Sorting the array while preserving the index
+    #Keeping the first K datapoints
+    dist = np.argsort(point_dist)[:k] #argsort trej3lk indices
+    #print(point_dist[dist])
+          
+    #Labels of the K datapoints from above
+    labels = y[dist]
+    #print("labels",labels)   
+      
+    #Majority voting
+
+    return proba(labels)
+
 def svmtrain(Xt, Yt):
     #Créer le modèle
     model= svm.SVC(kernel='linear') 
@@ -80,8 +117,9 @@ class ConfMatrix:
                     FP += self.matrice[j,i]
     
 # Prediction
-model = svmtrain(Xt,Yt)
-y_pred = model.predict(Xtt)
-mat = ConfMatrix(y_pred, Ytt)
-print(mat)
-print(y_pred)
+#model = svmtrain(Xt,Yt)
+#y_pred = model.predict(Xtt)
+predict(Xt,Yt,Xtt[0],10)
+#mat = ConfMatrix(y_pred, Ytt)
+#print(mat)
+#print(y_pred)
