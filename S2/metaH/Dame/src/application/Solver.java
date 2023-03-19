@@ -15,7 +15,7 @@ public class Solver {
 		parcouru = 0;cree = 0;
 		//BFS CALCULATION
 			start = System. currentTimeMillis();
-			sol = bfs(NombreReines);
+			//sol = bfs(NombreReines);
 			end = System. currentTimeMillis();
 		this.BFS = new Solution(sol,end-start,parcouru,cree);
 		parcouru = 0;cree = 0;
