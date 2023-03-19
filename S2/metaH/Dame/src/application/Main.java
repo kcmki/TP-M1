@@ -1,9 +1,5 @@
 package application;
 	
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Stack;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -33,12 +29,6 @@ public class Main extends Application {
 	}
 	
 	public static void main(String[] args) {
-		//launch(args);
-		int max = 8;
-		Solver S = new Solver(max);
-		Utils.printArray(S.BFS.Solution.Queens);
-		System.out.println(S.BFS.elapsedTime);
-		Utils.printArray(S.DFS.Solution.Queens);
-		System.out.println(S.DFS.elapsedTime);
+		launch(args);
 	}
 }

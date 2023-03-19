@@ -65,23 +65,20 @@ def mlptrain(Xt, Yt):
 class ConfMatrix:
     def __init__(self, ypred, Ytt):
         self.matrice = np.matrix(np.zeros((10,10)))
+        self.total=0
         for i in range(0, len(Ytt)):
             self.matrice[ypred[i],Ytt[i]] += 1
+            self.total += 1
     def __str__(self):
         return str(self.matrice)
-    def rappelCalcul(self, i):
+    def rappelCalcul(self):
         TP,TN,FP,FN = 0,0,0,0
-        for i in range(0,10):
-            for j in range(0,10):
-                if i == j:
-                    TP += self.matrice[i,j]
-                else:
-                    FN += self.matrice[i,j]
-                    FP += self.matrice[j,i]
-    
+        
+
 # Prediction
-model = svmtrain(Xt,Yt)
+model = knntrain(Xt,Yt)
 y_pred = model.predict(Xtt)
 mat = ConfMatrix(y_pred, Ytt)
 print(mat)
+print(mat.rappelCalcul())
 print(y_pred)

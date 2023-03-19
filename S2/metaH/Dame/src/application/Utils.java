@@ -13,7 +13,7 @@ public class Utils {
 			}
 		}
 		if(s.length() != 0) value = Integer.parseInt(s);
-		if(value <8) return 8;
+		if(value <4) return 4;
 		return value;
 	}
 
