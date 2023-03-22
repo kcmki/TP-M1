@@ -113,18 +113,9 @@ class ConfMatrix:
         
 
 # Prediction
-<<<<<<< HEAD
 #model = svmtrain(Xt,Yt)
 #y_pred = model.predict(Xtt)
 predict(Xt,Yt,Xtt[0],10)
 #mat = ConfMatrix(y_pred, Ytt)
 #print(mat)
 #print(y_pred)
-=======
-model = knntrain(Xt,Yt)
-y_pred = model.predict(Xtt)
-mat = ConfMatrix(y_pred, Ytt)
-print(mat)
-print(mat.rappelCalcul())
-print(y_pred)
->>>>>>> 9f5dd637d068fa6d5d8744427fadce4b74feb4a3

@@ -12,7 +12,7 @@ public class  TP{
         public static void main(String[] args) {
             int choiceOfData = Integer.parseInt(args[0]);
             ArrayList<Integer> S = new ArrayList<>();
-                try {
+           /*       try {
                     File myObj = new File("dataset.txt");
                     Scanner myReader = new Scanner(myObj);
                     String data = "";
@@ -25,17 +25,26 @@ public class  TP{
                     }
         
                     System.out.println();
-        
                 myReader.close();
-                } catch (FileNotFoundException e) {
+                }catch (FileNotFoundException e) {
                     System.out.println("An error occurred.");
                     e.printStackTrace();
-                } 
-
+                }  */
+            randomArray(S,args[0]);
+            long start = System.currentTimeMillis();
             ArrayList<Integer> A = Astar(S);
+            long end = System.currentTimeMillis();
             System.out.println(A);
+            System.out.println(f(A,sum(S)));
+            System.out.println(end-start+"ms");
         }
-
+        private static void randomArray(ArrayList<Integer> s, String string) {
+            int n = Integer.parseInt(string);
+            s.clear();
+            for (int i = 0; i < n; i++) {
+                s.add((int)(Math.random()*1000));
+            }
+        }
         public static ArrayList<Integer> Astar(ArrayList<Integer> S){
             int Sum = sum(S);
             PriorityQueue<Noeud> Ferme = new PriorityQueue<Noeud>(new Comparator<Noeud>(){
@@ -51,13 +60,15 @@ public class  TP{
             }
             });
             
+
             ArrayList<Integer> A = new ArrayList<Integer>();
+
             Noeud Elem  = new Noeud(f(A,Sum), A);
             
             Ouvert.add(Elem);
             while (Ouvert.size() != 0) {
                 Elem = Ouvert.poll();
-                System.out.println(Elem.children);
+                Ouvert.clear();
                 Ferme.add(Elem);
                 ArrayList<Integer> T = new ArrayList<Integer>(S);
                 remove(T,Elem.children);
@@ -65,19 +76,18 @@ public class  TP{
                 for (Integer integer : T) {
                     ArrayList <Integer> newL = new ArrayList<Integer>(Elem.children);
                     newL.add(integer);
-
                     Noeud newElem  = new Noeud(f(newL,Sum),newL);
                     if(sum(newElem.children) >= Sum/2)
                         return newElem.children;
                     if(sum(newElem.children) < Sum/2)
                         Ouvert.add(newElem);  
                 }
-
             }
+            System.out.println(Ferme.peek().children);
             return Ferme.poll().children;
         }
 
-        private static void remove(ArrayList<Integer> t, ArrayList<Integer> children) {
+        public static void remove(ArrayList<Integer> t, ArrayList<Integer> children) {
             for (Integer integer : children) {
                 t.remove(integer);
             }
@@ -96,5 +106,4 @@ public class  TP{
             return sum - (s/2);
         }
 
-        
 }
