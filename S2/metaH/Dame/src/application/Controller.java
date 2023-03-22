@@ -35,7 +35,7 @@ public class Controller {
 		int nbQueens = Utils.toNumeric(numberOfQueens.getText());
 		
 		if(nbQueens > 500) nbQueens = 500;
-		if(nbQueens < 4) {numberOfQueens.setText("4");}
+		if(nbQueens < 4) {TextBOX.setText("le minimum est 4");numberOfQueens.setText("4");}
 		NBQ = nbQueens;
 		Timer.setText("");
 		parcouru.setText("");
@@ -54,7 +54,9 @@ public class Controller {
 
 		Tasker task = new Tasker(NBQ);     
 		TextBOX.setText("Inprogress");
-		new Thread(task).start();
+		try {new Thread(task).start();}
+		catch(Exception ex){TextBOX.setText("Error :"+ex.getMessage());}
+		
 		
 		task.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
 		    @Override
@@ -74,8 +76,6 @@ public class Controller {
 		});
 	}
 	
-
-
 	public void RadioSelection(ActionEvent e) {
 		if(buttonDFS.isSelected()) {
 			resetTable();
@@ -94,19 +94,20 @@ public class Controller {
 		}
 		if(buttonA1.isSelected()) {
 			resetTable();
+			drawQueens(chessTable,S.A1.Solution.Queens);
 			Timer.setText(""+S.A1.elapsedTime/1000.0);
 			parcouru.setText(""+S.A1.parcouru);
 			cree.setText(""+S.A1.cree);
 		}
 		if(buttonA2.isSelected()) {
 			resetTable();
+			drawQueens(chessTable,S.A2.Solution.Queens);
 			Timer.setText(""+S.A2.elapsedTime/1000.0);
 			parcouru.setText(""+S.A2.parcouru);
 			cree.setText(""+S.A2.cree);
 		}
 	}
 	
-
 	private void drawQueens(GridPane chessTable, int[] queens) {
 		for(int x = 0; x< queens.length;x++) {
 			int i = x;
@@ -126,18 +127,15 @@ public class Controller {
 	private void resetTable() {
 		chessTable.getChildren().clear();
 		//draw the chess table
-		    int count = 0;
 		    double s = 500/NBQ; // side of rectangle
 		    boolean white = true;	
 		    for (int i = 0; i < NBQ; i++) {
-		      count++;
 		      for (int j = 0; j < NBQ; j++) {
 		        Rectangle r = new Rectangle(s, s, s, s);
 		        if (white)
 		          {r.setFill(Color.WHITE);white = !white;}
 		        else white = !white;
 		        chessTable.add(r, j, i);
-		        count++;
 		      }
 		      if((NBQ % 2) == 0) white = !white;
 		    }

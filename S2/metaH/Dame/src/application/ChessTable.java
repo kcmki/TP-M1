@@ -16,6 +16,7 @@ public class ChessTable {
 	public ChessTable(ChessTable T){
 		this.Queens = new int[T.max];
 		for(int i = 0 ; i < T.index;i++) this.Queens[i] = T.Queens[i];
+		for(int i = T.index;i < T.max;i++) this.Queens[i] = -1;
 		this.max = T.max;
 		this.finished = T.finished;
 		this.index=T.index;
@@ -30,55 +31,107 @@ public class ChessTable {
 	}
 	
 	public  int verifyQueens() {
-		int inDanger = 0;
-		for(int i = 0;i < max;i++) {
+
+		for(int i = 0;i < this.index;i++) {
 			
 			//on vérifie les colonne vu que les lignes sont surement juste
-			for(int j= 0; j<max;j++) {
-				if(Queens[i] == Queens[j] && i != j) inDanger++;
+			for(int j= 0; j<this.index;j++) {
+				if(Queens[i] == Queens[j] && i != j && Queens[i] != -1) return 1;
 			}
 			
 			//vérification des diagonale
-			inDanger = inDanger + verifyDiag(i,this.Queens[i]);
-			
+			if(verifyDiag(i,this.Queens[i]) == 1) return 1;
 		}
-		return inDanger;
+		return 0;
 	}
 	
 	private int verifyDiag(int i, int j) {
-		int danger = 0;
+
 		//on vérifie les quatre diagonale de l'element situé a [i,j]
 		//Nord ouest
 		int tempI = i,tempJ = j;
 		while(tempI >= 0 && tempJ >= 0) {
-			if(this.Queens[tempI] == tempJ && tempJ  !=j && tempI != i) danger++;
+			if(this.Queens[tempI] == tempJ && tempJ  !=j && tempI != i && tempJ != -1) return 1;
 			tempI--;
 			tempJ--;
 		}
 		//Sud est
 		tempI = i;
 		tempJ = j;
-		while(tempI < max && tempJ < max) {
-			if(this.Queens[tempI] == tempJ && tempJ  !=j && tempI != i) danger++;
+		while(tempI < this.index && tempJ < this.index) {
+			if(this.Queens[tempI] == tempJ && tempJ  !=j && tempI != i && tempJ != -1) return 1;
 			tempI++;
 			tempJ++;
 		}
 		// nord est
 		tempI = i;
 		tempJ = j;
-		while(tempI >= 0 && tempJ < max) {
-			if(this.Queens[tempI] == tempJ && tempJ  !=j && tempI != i) danger++;
+		while(tempI >= 0 && tempJ < this.index) {
+			if(this.Queens[tempI] == tempJ && tempJ  !=j && tempI != i && tempJ != -1) return 1;
 			tempI--;
 			tempJ++;
 		}
 		//sud ouest
 		tempI = i;
 		tempJ = j;
-		while(tempI < max && tempJ >= 0) {
-			if(this.Queens[tempI] == tempJ && tempJ  !=j && tempI != i) danger++;
+		while(tempI < this.index && tempJ >= 0) {
+			if(this.Queens[tempI] == tempJ && tempJ  !=j && tempI != i && tempJ != -1) return 1;
 			tempI++;
 			tempJ--;
 		}
-		return danger;
+		return 0;
+	}
+
+
+	public  int verifyQueensWithWeight() {
+		int inDanger = 0;
+		for(int i = 0;i < this.index;i++) {
+			
+			//on vérifie les colonne vu que les lignes sont surement juste
+			for(int j= 0; j<this.index;j++) {
+				if(Queens[i] == Queens[j] && i != j && Queens[i] != -1) inDanger++;
+			}
+			
+			//vérification des diagonale
+			inDanger = inDanger + verifyDiagWithWeight(i,Queens[i]);
+		}
+		return inDanger;
+	}
+	
+	private int verifyDiagWithWeight(int i, int j) {
+		int Danger = 0;
+		//on vérifie les quatre diagonale de l'element situé a [i,j]
+		//Nord ouest
+		int tempI = i,tempJ = j;
+		while(tempI >= 0 && tempJ >= 0) {
+			if(this.Queens[tempI] == tempJ && tempJ  !=j && tempI != i && tempJ != -1) Danger++;
+			tempI--;
+			tempJ--;
+		}
+		//Sud est
+		tempI = i;
+		tempJ = j;
+		while(tempI < this.index && tempJ < this.index) {
+			if(this.Queens[tempI] == tempJ && tempJ  !=j && tempI != i && tempJ != -1) Danger++;
+			tempI++;
+			tempJ++;
+		}
+		// nord est
+		tempI = i;
+		tempJ = j;
+		while(tempI >= 0 && tempJ < this.index) {
+			if(this.Queens[tempI] == tempJ && tempJ  !=j && tempI != i && tempJ != -1) Danger++;
+			tempI--;
+			tempJ++;
+		}
+		//sud ouest
+		tempI = i;
+		tempJ = j;
+		while(tempI < this.index && tempJ >= 0) {
+			if(this.Queens[tempI] == tempJ && tempJ  !=j && tempI != i && tempJ != -1) Danger++;
+			tempI++;
+			tempJ--;
+		}
+		return Danger;
 	}
 }

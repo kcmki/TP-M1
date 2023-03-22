@@ -38,7 +38,7 @@ public class PartitionnementDFS {
     public static void main(String[] args) {
         int choiceOfData = Integer.parseInt(args[0]);
         ArrayList<Integer> S = new ArrayList<>();
-/*         try {
+        try {
             File myObj = new File("dataset.txt");
             Scanner myReader = new Scanner(myObj);
             String data = "";
@@ -56,9 +56,9 @@ public class PartitionnementDFS {
         } catch (FileNotFoundException e) {
         System.out.println("An error occurred.");
         e.printStackTrace();
-        } */
+        } 
 
-        randomArray(S, args[0]);
+
 
         ArrayList<ArrayList<Integer>> solutions = new ArrayList<>();
         min = sum(S);
@@ -67,7 +67,7 @@ public class PartitionnementDFS {
         dfs(S.toArray(Integer[]::new), 0, 0, min, new ArrayList<>(), solutions);
         long end = System.currentTimeMillis();
         System.out.println("Les solutions : \n");
-        //System.out.println(solutions);
+        System.out.println(solutions);
         System.out.println("Nb solutions :"+solutions.size()/2);
         System.out.println("La difference entre les sous tableaux : "+min);
         System.out.println("Temps d'execution : "+(end-start)+" ms");

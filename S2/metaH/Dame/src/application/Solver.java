@@ -1,6 +1,8 @@
 package application;
 
+import java.util.Comparator;
 import java.util.LinkedList;
+import java.util.PriorityQueue;
 import java.util.Stack;
 
 public class Solver {
@@ -11,23 +13,27 @@ public class Solver {
 			long start = System. currentTimeMillis();
 			ChessTable  sol = dfs(NombreReines);
 			long end = System. currentTimeMillis();
+			System.out.println("DFS done");
 		this.DFS = new Solution(sol,end-start,parcouru,cree);
 		parcouru = 0;cree = 0;
 		//BFS CALCULATION
 			start = System. currentTimeMillis();
-			//sol = bfs(NombreReines);
+			sol = bfs(NombreReines);
 			end = System. currentTimeMillis();
+			System.out.println("BFS done");
 		this.BFS = new Solution(sol,end-start,parcouru,cree);
 		parcouru = 0;cree = 0;
 		//A1 CALCULATION
 			start  = System. currentTimeMillis();
 			sol = A1(NombreReines);
 			end = System.currentTimeMillis();
+			System.out.println("A1 done");
 		this.A1 = new Solution(sol,end-start,parcouru,cree);
 		//A2 CALCULATION
 			start  = System. currentTimeMillis();
 			sol = A2(NombreReines);
 			end = System.currentTimeMillis();
+			System.out.println("A2 done");
 		this.A2 = new Solution(sol,end-start,parcouru,cree);
 		
 	}
@@ -84,7 +90,6 @@ public class Solver {
 	    			if(CurrentDanger < min) {
 	    				sol  = current;
 	    				min  = CurrentDanger;
-	    				
 	    			}
 	    			if(CurrentDanger == 0) {sol  = new ChessTable(current);StateList.clear();}
 	    		}
@@ -92,14 +97,78 @@ public class Solver {
 	    	return sol;
 	    }
 
+	
 	public ChessTable A1(int NombreReines) {
-		ChessTable sol = new ChessTable(NombreReines);
-		
-		return sol;
+  
+    	PriorityQueue<ChessTable> StateList = new PriorityQueue<ChessTable>(new Comparator<ChessTable>() {
+
+			@Override
+			public int compare(ChessTable o1, ChessTable o2) {
+				int x = o1.verifyQueensWithWeight();
+				int y = o2.verifyQueensWithWeight();
+				if(x > y)  return 1;
+				if(x < y)  return -1;
+				if( o1.index > o2.index ) return -1;
+				if (o1.index < o2.index ) return 1;
+				return 1;
+			}});
+    	
+    	
+    	ChessTable sol = new ChessTable(NombreReines);
+    	ChessTable current;
+    	ChessTable  next;
+
+    	StateList.add(sol);
+    	while(!StateList.isEmpty()) {
+    		current = StateList.poll();
+    		parcouru++;
+    		if(!current.finished) {
+        		for(int i = 0; i < NombreReines;i++) {
+        			next = new  ChessTable(current);
+        			next.addElement(i);
+        			StateList.add(next);
+        			cree++;
+        		}
+    		}else {
+    			if(current.verifyQueens() == 0) {sol  = new ChessTable(current);StateList.clear();}
+    		}
+    	}
+    	return sol;
 	}
 	public ChessTable A2(int NombreReines) {
-		ChessTable sol = new ChessTable(NombreReines);
-		
-		return sol;
+		PriorityQueue<ChessTable> StateList = new PriorityQueue<ChessTable>(new Comparator<ChessTable>() {
+
+			@Override
+			public int compare(ChessTable o1, ChessTable o2) {
+				int x = o1.verifyQueensWithWeight();
+				int y = o2.verifyQueensWithWeight();
+				if(x > y)  return 1;
+				if(x < y)  return -1;
+				if( o1.index > o2.index ) return -1;
+				if (o1.index < o2.index ) return 1;
+				return 1;
+			}});
+    	
+    	
+    	ChessTable sol = new ChessTable(NombreReines);
+    	ChessTable current;
+    	ChessTable  next;
+
+    	StateList.add(sol);
+    	while(!StateList.isEmpty()) {
+    		current = StateList.poll();
+    		parcouru++;
+    		if(!current.finished) {
+        		for(int i = 0; i < NombreReines;i++) {
+        			next = new  ChessTable(current);
+        			next.addElement(i);
+        			StateList.add(next);
+        			cree++;
+        		}
+    		}else {
+    			if(current.verifyQueens() == 0) {sol  = new ChessTable(current);StateList.clear();}
+    		}
+    	}
+    	return sol;
 	}
 }
