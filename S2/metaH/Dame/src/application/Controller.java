@@ -34,25 +34,28 @@ public class Controller {
 	public void SetQueens(ActionEvent e) {
 		int nbQueens = Utils.toNumeric(numberOfQueens.getText());
 		
-		if(nbQueens > 500) nbQueens = 500;
+		if(nbQueens > 100) nbQueens = 100;
 		if(nbQueens < 4) {TextBOX.setText("le minimum est 4");numberOfQueens.setText("4");}
 		NBQ = nbQueens;
+		int algo  = 0;
 		Timer.setText("");
 		parcouru.setText("");
 		cree.setText("");
+		
 		buttonDFS.setDisable(true);
 		buttonBFS.setDisable(true);
 		buttonA1.setDisable(true);
 		buttonA2.setDisable(true);
-		buttonDFS.setSelected(false);
-		buttonBFS.setSelected(false);
-		buttonA1.setSelected(false);
-		buttonA2.setSelected(false);
 		numberOfQueens.setDisable(true);
+		
+		if(buttonDFS.isSelected()) algo = 0;
+		if(buttonBFS.isSelected()) algo = 1;
+		if(buttonA1.isSelected()) algo = 2;
+		if(buttonA2.isSelected()) algo = 3;
 		
 		resetTable();
 
-		Tasker task = new Tasker(NBQ);     
+		Tasker task = new Tasker(NBQ,algo);     
 		TextBOX.setText("Inprogress");
 		try {new Thread(task).start();}
 		catch(Exception ex){TextBOX.setText("Error :"+ex.getMessage());}
@@ -66,47 +69,22 @@ public class Controller {
 		    	S1 = task.getValue();
 		    	S = S1;
 
-				TextBOX.setText("Select a solution to draw");
 				buttonDFS.setDisable(false);
 				buttonBFS.setDisable(false);
 				buttonA1.setDisable(false);
 				buttonA2.setDisable(false);
 				numberOfQueens.setDisable(false);
+				
+				resetTable();
+				drawQueens(chessTable,S.Sol.Solution.Queens);
+				Timer.setText(""+S.Sol.elapsedTime/1000.0);
+				parcouru.setText(""+S.Sol.parcouru);
+				cree.setText(""+S.Sol.cree);
+				TextBOX.setText("Done");
 		    }
 		});
 	}
 	
-	public void RadioSelection(ActionEvent e) {
-		if(buttonDFS.isSelected()) {
-			resetTable();
-			drawQueens(chessTable,S.DFS.Solution.Queens);
-			Timer.setText(""+S.DFS.elapsedTime/1000.0);
-			parcouru.setText(""+S.DFS.parcouru);
-			cree.setText(""+S.DFS.cree);
-			
-		}
-		if(buttonBFS.isSelected()) {
-			resetTable();
-			drawQueens(chessTable,S.BFS.Solution.Queens);
-			Timer.setText(""+S.BFS.elapsedTime/1000.0);
-			parcouru.setText(""+S.BFS.parcouru);
-			cree.setText(""+S.BFS.cree);
-		}
-		if(buttonA1.isSelected()) {
-			resetTable();
-			drawQueens(chessTable,S.A1.Solution.Queens);
-			Timer.setText(""+S.A1.elapsedTime/1000.0);
-			parcouru.setText(""+S.A1.parcouru);
-			cree.setText(""+S.A1.cree);
-		}
-		if(buttonA2.isSelected()) {
-			resetTable();
-			drawQueens(chessTable,S.A2.Solution.Queens);
-			Timer.setText(""+S.A2.elapsedTime/1000.0);
-			parcouru.setText(""+S.A2.parcouru);
-			cree.setText(""+S.A2.cree);
-		}
-	}
 	
 	private void drawQueens(GridPane chessTable, int[] queens) {
 		for(int x = 0; x< queens.length;x++) {

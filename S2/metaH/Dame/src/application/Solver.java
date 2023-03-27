@@ -6,36 +6,29 @@ import java.util.PriorityQueue;
 import java.util.Stack;
 
 public class Solver {
-	public Solution DFS,BFS,A1,A2;
+	public Solution Sol;
 	long parcouru=0,cree=0;
-	public Solver(int NombreReines) {
+	public Solver(int NombreReines,int algo) {
 		//DFS CALCULATION
+			ChessTable  sol = null;
 			long start = System. currentTimeMillis();
-			ChessTable  sol = dfs(NombreReines);
+			switch(algo) {
+				case  0:
+					 sol = dfs(NombreReines);
+					break;
+				case  1:
+					sol = bfs(NombreReines);
+					break;
+				case  2:
+					sol = A1(NombreReines);
+					break;
+				case  3:
+					sol = A2(NombreReines);
+					break;
+			}
 			long end = System. currentTimeMillis();
-			System.out.println("DFS done");
-		this.DFS = new Solution(sol,end-start,parcouru,cree);
-		parcouru = 0;cree = 0;
-		//BFS CALCULATION
-			start = System. currentTimeMillis();
-			sol = bfs(NombreReines);
-			end = System. currentTimeMillis();
-			System.out.println("BFS done");
-		this.BFS = new Solution(sol,end-start,parcouru,cree);
-		parcouru = 0;cree = 0;
-		//A1 CALCULATION
-			start  = System. currentTimeMillis();
-			sol = A1(NombreReines);
-			end = System.currentTimeMillis();
-			System.out.println("A1 done");
-		this.A1 = new Solution(sol,end-start,parcouru,cree);
-		//A2 CALCULATION
-			start  = System. currentTimeMillis();
-			sol = A2(NombreReines);
-			end = System.currentTimeMillis();
-			System.out.println("A2 done");
-		this.A2 = new Solution(sol,end-start,parcouru,cree);
-		
+		this.Sol = new Solution(sol,end-start,parcouru,cree);
+		parcouru = 0;cree=0;
 	}
 	
 	public ChessTable dfs(int NombreReines) {
@@ -136,6 +129,9 @@ public class Solver {
     	return sol;
 	}
 	public ChessTable A2(int NombreReines) {
+		
+		// modifier pour que la case choisie soit celle ou la distance est de N+1/2
+		
 		PriorityQueue<ChessTable> StateList = new PriorityQueue<ChessTable>(new Comparator<ChessTable>() {
 
 			@Override

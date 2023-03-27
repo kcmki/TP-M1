@@ -52,7 +52,7 @@
                   <Font name="System Bold Italic" size="18.0" />
                </font>
             </Text>
-            <RadioButton fx:id="buttonBFS" disable="true" layoutX="73.0" layoutY="275.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#RadioSelection" prefHeight="50.0" prefWidth="257.0" text="BFS                   " textFill="#3a3a3a">
+            <RadioButton fx:id="buttonBFS" layoutX="73.0" layoutY="275.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="50.0" prefWidth="257.0" text="BFS                   " textFill="#3a3a3a">
                <font>
                   <Font name="System Bold" size="22.0" />
                </font>
@@ -60,17 +60,17 @@
                   <ToggleGroup fx:id="Algorithm" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="buttonA1" disable="true" layoutX="73.0" layoutY="321.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#RadioSelection" prefHeight="50.0" prefWidth="257.0" text="A* - H1()          " textFill="#3a3a3a" toggleGroup="$Algorithm">
+            <RadioButton fx:id="buttonA1" layoutX="73.0" layoutY="321.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="50.0" prefWidth="257.0" text="A* - H1()          " textFill="#3a3a3a" toggleGroup="$Algorithm">
                <font>
                   <Font name="System Bold" size="22.0" />
                </font>
             </RadioButton>
-            <RadioButton fx:id="buttonA2" disable="true" layoutX="73.0" layoutY="371.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#RadioSelection" prefHeight="50.0" prefWidth="257.0" text="A* - H2()          " textFill="#3a3a3a" toggleGroup="$Algorithm">
+            <RadioButton fx:id="buttonA2" layoutX="73.0" layoutY="371.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="50.0" prefWidth="257.0" text="A* - H2()          " textFill="#3a3a3a" toggleGroup="$Algorithm">
                <font>
                   <Font name="System Bold" size="22.0" />
                </font>
             </RadioButton>
-            <RadioButton fx:id="buttonDFS" disable="true" layoutX="73.0" layoutY="221.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#RadioSelection" prefHeight="50.0" prefWidth="257.0" text="DFS                   " textFill="#3a3a3a" toggleGroup="$Algorithm">
+            <RadioButton fx:id="buttonDFS" layoutX="73.0" layoutY="221.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="50.0" prefWidth="257.0" selected="true" text="DFS                   " textFill="#3a3a3a" toggleGroup="$Algorithm">
                <font>
                   <Font name="System Bold" size="22.0" />
                </font>
