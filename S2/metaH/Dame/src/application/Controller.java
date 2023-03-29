@@ -77,14 +77,28 @@ public class Controller {
 				
 				resetTable();
 				drawQueens(chessTable,S.Sol.Solution.Queens);
+				Utils.printArray(S.Sol.Solution.Queens);
 				Timer.setText(""+S.Sol.elapsedTime/1000.0);
 				parcouru.setText(""+S.Sol.parcouru);
 				cree.setText(""+S.Sol.cree);
 				TextBOX.setText("Done");
 		    }
 		});
-	}
+		task.setOnFailed(new EventHandler<WorkerStateEvent>() {
+		    @Override
+		    public void handle(WorkerStateEvent t) {
+
+				buttonDFS.setDisable(false);
+				buttonBFS.setDisable(false);
+				buttonA1.setDisable(false);
+				buttonA2.setDisable(false);
+				numberOfQueens.setDisable(false);
+				
+				TextBOX.setText("Error");
+		    }
+		});
 	
+	}
 	
 	private void drawQueens(GridPane chessTable, int[] queens) {
 		for(int x = 0; x< queens.length;x++) {

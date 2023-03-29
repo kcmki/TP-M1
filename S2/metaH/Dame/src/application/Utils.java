@@ -23,8 +23,8 @@ public class Utils {
 		return false;
 	}
 	public static void printArray(int[] x) {
-		for(int y : x) {
-			System.out.print(y);
+		for(int i=0;i<x.length;i++) {
+			System.out.print("["+i+","+x[i]+"]");
 		}
 		System.out.print("\n");
 	}

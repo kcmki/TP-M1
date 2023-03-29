@@ -134,4 +134,9 @@ public class ChessTable {
 		}
 		return Danger;
 	}
-}
+	public int distance() {
+		if(index < 2) return 0;
+		return Math.abs(this.Queens[index-1] - this.Queens[index-2]);
+	}
+	}
+

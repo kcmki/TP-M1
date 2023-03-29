@@ -136,15 +136,16 @@ public class Solver {
 
 			@Override
 			public int compare(ChessTable o1, ChessTable o2) {
-				int x = o1.verifyQueensWithWeight();
-				int y = o2.verifyQueensWithWeight();
-				if(x > y)  return 1;
-				if(x < y)  return -1;
+				int dist1 = o1.distance();
+				
+				int dist2 = o2.distance();
+				
+				if(dist1 > dist2)  return -1;
+				if(dist1 < dist2)  return 1;
 				if( o1.index > o2.index ) return -1;
 				if (o1.index < o2.index ) return 1;
 				return 1;
 			}});
-    	
     	
     	ChessTable sol = new ChessTable(NombreReines);
     	ChessTable current;
