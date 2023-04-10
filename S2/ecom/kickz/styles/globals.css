@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+::-webkit-scrollbar-thumb {
+    border-radius: 100px;
+    background-color: red;
+  }
+
+.width-transition{
+    -webkit-transition: width .2s ease-out;
+    -moz-transition: width .2s ease-out;
+    -ms-transition: width .2s ease-out;
+    -o-transition: width .2s ease-out;
+    transition: width .2s ease-out
+}
+.transition-height{
+    transition: height 0.5s ease-in-out;
+}
+.running,.lifestyle{
+    transition:height 0.5s ease-in-out;
+}
+.running:hover ~ .running-dropper,.lifestyle:hover ~ .lifestyle-dropper,.running-dropper:hover,.lifestyle-dropper:hover{
+    height: 200px;
+    opacity: 1;
+    transition: height 0.5s ease-in-out;
+}
+.bag-dropper{
+    transition: height 0.5s ease-in-out;
+}
+
+#Bag:checked ~ .bag-dropper{
+    height: 200px;
+    opacity: 1;
+    transition: 0.5s ease-in-out;
+}
