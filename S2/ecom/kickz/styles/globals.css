@@ -4,11 +4,6 @@
 
 
 
-::-webkit-scrollbar-thumb {
-    border-radius: 100px;
-    background-color: red;
-  }
-
 .width-transition{
     -webkit-transition: width .2s ease-out;
     -moz-transition: width .2s ease-out;

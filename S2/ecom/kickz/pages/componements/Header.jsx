@@ -76,7 +76,7 @@ function Bag({items}){
     return(
         <div className='bag-dropper w-full h-0 opacity-0 '>
             <form action="" method="post" className='flex flex-col items-center text-black'>
-                <div className='flex flex-col h-36 overflow-y-scroll scrollbar scrollbar-rounded-sm scrollbar-thumb-gray-200 scrollbar-track-black scrollbar-thin '>
+                <div className='flex flex-col h-36 overflow-y-scroll scrollbar  scrollbar-thumb-gray-200 scrollbar-track-black scrollbar-thin scrollbar-thumb-rounded'>
                 {
                     items.map((item) => <BagItem image={item.image} name={item.nom} price={item.price} />)
                 }
