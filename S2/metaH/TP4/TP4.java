@@ -1,8 +1,9 @@
 import java.util.Comparator;
 import java.util.PriorityQueue;
+import java.util.ArrayList;
 
 public class TP4 {
-    static int[] Tab = {4,2,3,4,1};
+    static int[] Tab = {382745, 799601, 909247, 729069, 467902,  44328,  34610, 698150, 823460, 903959, 853665, 551830, 610856, 670702, 488960, 951111, 323046, 446298, 931161,  31385, 496951, 264724, 224916, 169684};
     public static void main(String[] args) {
         
         int TaillePop = 10;
@@ -16,8 +17,7 @@ public class TP4 {
 
         initPop(sol,Tab.length,TaillePop);
 
-        System.out.println(sol.size());
-        int maxGen = 100;
+        int maxGen = 1000000;
         int[][] Parents;
         int[] Enfant1,Enfant2;
         for (int i = 0; i < maxGen; i++) {
@@ -25,16 +25,12 @@ public class TP4 {
 
             Enfant1 = Crossover(Parents[0],Parents[1]);
             Enfant2 = mutation(Enfant1);
-            System.out.println("------------------");
-            printArray(Enfant1);
-            printArray(Enfant2);
-            System.out.println("------------------");
             Remplacement(sol,Enfant1,fitFunc(Enfant1,Tab));
             Remplacement(sol,Enfant2,fitFunc(Enfant2,Tab));
-            System.out.println(sol.size());
         }
+        printArray(sol.peek());
+        System.out.println(fitFunc(sol.peek(),Tab));
 
-        printArray(lastElem(sol));
 
     }
     public static int[] lastElem(PriorityQueue<int[]> sol) {
@@ -46,10 +42,12 @@ public class TP4 {
     }
     public static int[][] Selection(PriorityQueue<int[]> sol) {
         int[][] Parents = new int[2][];
-        Parents[0] = sol.poll();
-        Parents[1] = sol.poll();
-        sol.add(Parents[0]);
-        sol.add(Parents[1]);
+
+        Object[] elems = sol.toArray();
+
+        Parents[0] = (int[])elems[elems.length-1];
+        Parents[1] = (int[])elems[(int)((elems.length-1)*Math.random())];
+
         return Parents;
     }
 
@@ -57,11 +55,13 @@ public class TP4 {
         int[] newSol = new int[sol1.length];
         int index = (int) (Math.random() * sol1.length);
         for (int i = 0; i < index; i++) {
-            newSol[i] = sol1[i];
+                newSol[i] = sol1[i];
         }
-        for (int i = index; i < sol1.length; i++) {
+
+        for (int i = index; i < newSol.length; i++) {
             newSol[i] = sol2[i];
         }
+
         return newSol;
     }
 
@@ -105,8 +105,11 @@ public class TP4 {
         for (int i = 0; i < sol.length; i++) {
             newSol[i] = sol[i];
         }
-        int index = (int) (Math.random() * sol.length);
-        newSol[index] = (newSol[index] == 1) ? 0 : 1;
+        for (int i = 0; i < newSol.length * Math.random(); i++) {
+            int index = (int) (Math.random() * sol.length);
+            newSol[index] = (newSol[index] == 1) ? 0 : 1;
+        }
+
         return newSol;
     }
 
