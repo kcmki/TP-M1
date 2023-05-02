@@ -39,6 +39,7 @@ public class Controller {
 		NBQ = nbQueens;
 		int algo  = 0;
 		Timer.setText("");
+		Fitness.setText("");
 		/*parcouru.setText("");
 		cree.setText("");*/
 		
@@ -75,7 +76,7 @@ public class Controller {
 				Timer.setText(""+S.Sol.elapsedTime/1000.0);
 				/*parcouru.setText(""+S.Sol.parcouru);
 				cree.setText(""+S.Sol.cree);*/
-				Fitness.setText(""+S.Sol.Solution.verifyQueens());
+				Fitness.setText(""+S.Sol.fit);
 				TextBOX.setText("Done");
 		    }
 		});
