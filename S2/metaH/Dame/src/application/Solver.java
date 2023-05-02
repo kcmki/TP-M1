@@ -102,7 +102,6 @@ public class Solver {
 	    	return sol;
 	    }
 
-	
 	public ChessTable A1(int NombreReines) {
   
     	PriorityQueue<ChessTable> StateList = new PriorityQueue<ChessTable>(new Comparator<ChessTable>() {
@@ -285,297 +284,354 @@ public class Solver {
 	    }
 
 	}
-	public class Individue {
-	    static int n ; // taille de lechequier
-	    int[] Position;
-	    int score;
-	    
-	    
-	    public Individue(int[] n) {
-	        this.Position = n.clone();
-	        this.n = n.length;
-	        score = fitnessFct();
+public class Individue {
+    int n ; // taille de lechequier
+    int[] Position;
+    int score;
+    
+    
+    public Individue(int[] n) {
+        this.Position = n.clone();
+        this.n = n.length;
+        score = fitnessFct();
 
-	    }
-	    public Individue(int n) 
-	    {   this.Position = new int[n];
-	        this.n = n;
-	            // Initialise une population
-	            for (int i = 0; i < n; i++) 
-	            {   
-	                Position[i] = (int) (Math.random() * n);  
-	            }
-	            score = fitnessFct();
-	    }
+    }
+    public Individue(int n) 
+    {   this.Position = new int[n];
+        this.n = n;
+            // Initialise une population
+            for (int i = 0; i < n; i++) 
+            {   
+                Position[i] = (int) (Math.random() * n);  
+            }
+            score = fitnessFct();
+    }
 
-	    public void initIndividue ()
-	    {
-	        for (int i = 0; i < n; i++) 
-	        {   
-	                Position[i] = -1;  
-	        }
-	        System.out.println("Solution initialisé : "+Arrays.toString(Position));
-	    }
+    public void initIndividue ()
+    {
+        for (int i = 0; i < n; i++) 
+        {   
+                Position[i] = -1;  
+        }
+        System.out.println("Solution initialisé : "+Arrays.toString(Position));
+    }
 
-	    
-	    public int fitnessFct() {
-	        int nb = 0;
-	        for (int i = 0; i < n-1; i++) {
-	            for (int j = i+1; j < n; j++) {
-	                if (Position[i] == Position[j] || Math.abs(Position[i] - Position[j]) == j-i) {
-	                    nb++;
-	                }
-	            }
-	        }
-	        return nb;
-	    }
-	    
-	    // Verification
+    
+    public int fitnessFct() {
+        int nb = 0;
+        for (int i = 0; i < n-1; i++) {
+            for (int j = i+1; j < n; j++) {
+                if (Position[i] == Position[j] || Math.abs(Position[i] - Position[j]) == j-i) 
+                {
+                    nb++;
+                }
+            }
+        }
+        return nb;
+    }
+    
+    // Verification
 
-	    public boolean isValide ()
-	    {   
-	        System.out.println("Verification de la solution : "+Arrays.toString(Position));
-	        if ( verifierHorizontal()==0 && verifierVertical()==0 && verifierDiagonale()==0)
-	            return true;
-	        else
-	            return false;
-	    }
-	    
-	   
+    public boolean isValide ()
+    {   
+        System.out.println("Verification de la solution : "+Arrays.toString(Position));
+        if ( verifierHorizontal()==0 && verifierVertical()==0 && verifierDiagonale()==0)
+            return true;
+        else
+            return false;
+    }
+    
+   
 
-	    public int verifierHorizontal ()
-	    {   int cpt = 0;
-	        for (int i = 0; i < n; i++) 
-	        {
-	            for (int j = 0; j < n; j++) 
-	            {
-	                if (i != j && Position[i] == Position[j])
-	                    cpt++;
-	            }
-	        }
-	        return cpt;
-	    }
+    public int verifierHorizontal ()
+    {   int cpt = 0;
+        for (int i = 0; i < n; i++) 
+        {
+            for (int j = 0; j < n; j++) 
+            {
+                if (i != j && Position[i] == Position[j])
+                    cpt++;
+            }
+        }
+        return cpt;
+    }
 
-	    public int verifierVertical () 
-	    {   int cpt = 0;
-	        for (int i = 0; i < n; i++) {
-	            for (int j = i + 1; j < n; j++) {
-	                if (Position[i] == Position[j])
-	                    cpt++;
-	            }
-	        }
-	        return cpt;
-	    }
-	    
-	    public int verifierDiagonale ()     
-	    {    // vérifier la diagonale en haut à gauche
-	        int cpt = 0;
-	    for (int i = 0; i < n; i++) 
-	    {
-	        for (int j = i + 1; j < n; j++) 
-	        {
-	            if (Position[i] == Position[j] - (j - i) || Position[i] == Position[j] + (j - i))
-	                cpt++;
-	        }
-	    }
-	    
-	    // vérifier la diagonale en bas à gauche
-	    for (int i = 0; i < n; i++) 
-	    {
-	        for (int j = i + 1; j < n; j++) 
-	        {
-	            if (Position[i] == Position[j] - (i - j) || Position[i] == Position[j] + (i - j))
-	                cpt++;
-	        }
-	    }
-	    
-	    return cpt;
-	    }
-	    
+    public int verifierVertical () 
+    {   int cpt = 0;
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                if (Position[i] == Position[j])
+                    cpt++;
+            }
+        }
+        return cpt;
+    }
+    
+    public int verifierDiagonale ()     
+    {    // vérifier la diagonale en haut à gauche
+        int cpt = 0;
+    for (int i = 0; i < n; i++) 
+    {
+        for (int j = i + 1; j < n; j++) 
+        {
+            if (Position[i] == Position[j] - (j - i) || Position[i] == Position[j] + (j - i))
+                cpt++;
+        }
+    }
+    
+    // vérifier la diagonale en bas à gauche
+    for (int i = 0; i < n; i++) 
+    {
+        for (int j = i + 1; j < n; j++) 
+        {
+            if (Position[i] == Position[j] - (i - j) || Position[i] == Position[j] + (i - j))
+                cpt++;
+        }
+    }
+    
+    return cpt;
+    }
+    
 
-	    
-	    
-	        
+    
+    
+        
 
-	        // Constructeur
+        // Constructeur
 
-	    public int[] getPosition() {
-	        return Position;
-	    }
+    public int[] getPosition() {
+        return Position;
+    }
 
-	    public void setPosition(int[] position) {
-	        Position = position;
-	    }
-	    
-	    public String toString() {
-	        String s = Arrays.toString(Position) + "Fitness fct :  " + fitnessFct();
-	        s+=                            "\tScore :  " + score;
+    public void setPosition(int[] position) {
+        Position = position;
+    }
+    
+    public String toString() {
+        String s = Arrays.toString(Position) + "Fitness fct :  " + fitnessFct();
+        s+=                            "\tScore :  " + score;
 
-	        return s;
+        return s;
 
-	    }
+    }
 
-	    public void mutation (int numPosition, int NouvelleValeur)
-	    {
-	        Position[numPosition] = NouvelleValeur;
-	        this.score = fitnessFct();
-	    }
+    public void mutation (int numPosition, int NouvelleValeur)
+    {
+        Position[numPosition] = NouvelleValeur;
+        this.score = fitnessFct();
+    }
 
-	    public int getScore() {
-	        return score;
-	    }
-	    public void setScore(int score) {
-	        this.score = score;
-	    }
-	}
+    public int getScore() {
+        return score;
+    }
+    public void setScore(int score) {
+        this.score = score;
+    }
+}
 
-	public class particule extends Individue{
+public class particule extends Individue{
 
-		   
-	    int x[];
-	    int v[];
-	    int pBest[];
+   
+    int x[];
+    int v[];
+    int pBest[];
 
-	    public particule(int n) {
-	        super(n);
-	        this.x=Position.clone();
-	        this.pBest=Position.clone();
-	        this.v = new int[n];
-	        // definir v0
-	        double vMin = 0.1;
-	        double vMax = 1;
-	        Random rand = new Random();
-	        for (int i=0;i<n;i++)
-	        {
-	            double randomDouble = vMin + (vMax - vMin) * rand.nextDouble();
-	            v[i] =  (int) Math.round(randomDouble);
-	        }
-	     
-	    }
+    public particule (int[] n )
+    {
+        super(n);
+        this.x=Position.clone();
+        this.pBest=Position.clone();
+        this.v = new int[n.length];
+        // definir v0
+        double vMin = 0.1;
+        double vMax = 1;
+        Random rand = new Random();
+        for (int i=0;i<n.length;i++)
+        {
+            double randomDouble = vMin + (vMax - vMin) * rand.nextDouble();
+            v[i] =  (int) Math.round(randomDouble);
+        }
 
-	    
+    }
 
-	    public void updateVitesse(int tetaV, int c1, int c2, int r1, int r2, int[] gBest) {
-	        int[] temp_tab = addTableau(multiplTableau(tetaV, v), multiplTableau(c1 * r1, MinusTableau(pBest, x)));
-	        v = addTableau(temp_tab, multiplTableau(c2 * r2, MinusTableau(gBest, x)));
-	    }
-	    
-	    public void updatePosition() {
-	        x = addTableau(x, v);
-	        Position = x.clone();
-	        score = fitnessFct();
-	        
-	        Individue theBest = new Individue(pBest);
+    
+    public particule(int n) {
+        super(n);
+        this.x=Position.clone();
+        this.pBest=Position.clone();
+        this.v = new int[n];
+        // definir v0
+        double vMin = 0.1;
+        double vMax = 1;
+        Random rand = new Random();
+        for (int i=0;i<n;i++)
+        {
+            double randomDouble = vMin + (vMax - vMin) * rand.nextDouble();
+            v[i] =  (int) Math.round(randomDouble);
+        }
+     
+    }
 
-	        if (score > theBest.fitnessFct())
-	        {
-	            pBest = x.clone();
-	        }
-	    }
+    
 
-	    public int[] MinusTableau(int[] tab1, int[] tab2) {
-	        int[] result = new int[tab1.length];
-	        for (int i = 0; i < tab1.length; i++) {
-	            result[i] = (tab1[i] - tab2[i] + n) % n;
-	        }
-	        return result;
-	    }
-	    
-	    public static int[] multiplTableau(int n, int[] arr) {
-	        int[] result = new int[arr.length];
-	        for (int i = 0; i < arr.length; i++) {
-	            result[i] = (n * arr[i]) % n;
-	        }
-	        return result;
-	    }
-	    
-	    public static int[] addTableau(int[] t1, int[] t2) {
-	        int[] result = new int[t1.length];
-	        for (int i = 0; i < t1.length; i++) {
-	            result[i] = (t1[i] + t2[i]) % n;
-	        }
-	        return result;
-	    }
-	    
-	    
-	    
-	    
-	}
+    public void updateVitesse(double tetaV, double c1, double c2, double r1, double r2, int[] gBest) {
+        int[] temp_tab = addTableau(multiplTableau(tetaV, v), multiplTableau(c1 * r1, MinusTableau(pBest, x)));
+        v = addTableau(temp_tab, multiplTableau(c2 * r2, MinusTableau(gBest, x)));
+    }
+    
+    public void updatePosition() {
+        x = addTableau(x, v);
+        Position = x.clone();
+        score = fitnessFct();
+        
+        Individue theBest = new Individue(pBest);
 
-	public class PSO {
-	    int c1, c2;
-	    int r1, r2;
-	    int maxIteration;
-	    int tailleEchec;
-	    int taillePopu;
-	    particule population[];
-	    int tetaV;
-	    int gBest[];
+        if (score > theBest.fitnessFct())
+        {
+            pBest = x.clone();
+        }
+    }
 
-	    public PSO(int tetaV,int c1, int c2,int r1, int r2, int maxIteration, int tailleEchec, int taillePopu) {
-	        this.r1 = r1;
-	        this.r2 = r2;
-	        this.c1 = c1;
-	        this.c2 = c2;
-	        this.maxIteration = maxIteration;
-	        this.tailleEchec = tailleEchec;
-	        this.taillePopu = taillePopu;
-	        this.tetaV = tetaV;
-	        population = new particule[taillePopu];
-	    }
+    public int[] MinusTableau(int[] tab1, int[] tab2) {
+        int[] result = new int[tab1.length];
+        for (int i = 0; i < tab1.length; i++) {
+            result[i] = (tab1[i] - tab2[i] + n) % n;
+        }
+        return result;
+    }
+    
+    public static int[] multiplTableau(double n, int[] arr) {
+        int[] result = new int[arr.length];
+        for (int i = 0; i < arr.length; i++) {
+            result[i] = (int) (n * arr[i]);
+            result[i] = result[i] % arr.length;
+        }
+        return result;
+    }
+    
+    
+    
+    public static int[] addTableau(int[] t1, int[] t2) {
+        int[] result = new int[t1.length];
+        for (int i = 0; i < t1.length; i++) {
+            result[i] = (t1[i] + t2[i]) % t1.length;
+        }
+        return result;
+    }
+    
+    
+    
+    
+}
 
-	    public int [] run() {
+public class PSO {
+    double c1, c2;
+    double r1, r2;
+    int maxIteration;
+    int tailleEchec;
+    int taillePopu;
+    particule population[];
+    double tetaV;
+    int gBest[];
 
-	        int MaxIndexScore = 0;
-	        int MaxScore = 100;
-	        // Initialisation de la population
-	        for (int i = 0; i < taillePopu; i++) {
-	            population[i] = new particule(tailleEchec);
-	            if (population[i].score < MaxScore)
-	            {
+    public PSO(double tetaV,double c1, double c2,double r1, double r2, int maxIteration, int tailleEchec, int taillePopu) {
+        this.r1 = r1;
+        this.r2 = r2;
+        this.c1 = c1;
+        this.c2 = c2;
+        this.maxIteration = maxIteration;
+        this.tailleEchec = tailleEchec;
+        this.taillePopu = taillePopu;
+        this.tetaV = tetaV;
+        population = new particule[taillePopu];
+    }
 
-	                System.out.print("La meilleure initial est : ");
-	                System.out.print(population[i]);
-	                System.out.println(" avec un score de : " + population[i].score);
-	                MaxScore = population[i].score;
-	                MaxIndexScore = i;
-	            }
-	        }
-	        
-	        gBest = population[MaxIndexScore].Position.clone();
-	        
-	        // Boucle principal
-	            for (int i = 0; i < maxIteration; i++) // Tant que (Cdt d'arret non verifie)
-	            {
-	                for (int j = 0; j < taillePopu ; j++) // pour chaque particule xi
-	                {
-	                    population[j].updateVitesse(tetaV, c1, c2, r1, r2, gBest);
-	                    population[j].updatePosition(); // mise a jour de la position et Pbest
-	                }
-	                // Mise a jour de Gbest
-	                for (int j = 0; j < taillePopu ; j++) {
-	                    if (population[j].score < MaxScore)
-	                    {   
-	                        System.out.println("Meilleur score de la "+j+" etiration: "+population[j].score);
-	                        MaxScore = population[j].score;
-	                        MaxIndexScore = j;
-	                    }
-	                }
-	                
-	                gBest = population[MaxIndexScore].Position.clone();
-	            }
+    public int [] run() {
 
-	            System.out.print("La meilleure solution est : ");
-	            System.out.print(Arrays.toString(gBest));
-	            System.out.println(" avec un score de : " + MaxScore);
-	            return gBest;
+        int MaxIndexScore = 0;
+        int MaxScore = 100;
+        // Initialisation de la population
+        for (int i = 0; i < taillePopu; i++) {
+            population[i] = new particule(tailleEchec);
+            if (population[i].score < MaxScore)
+            {
 
-	    }
+                System.out.print("La meilleure initial est : ");
+                System.out.print(population[i]);
+                System.out.println(" avec un score de : " + population[i].score);
+                MaxScore = population[i].score;
+                MaxIndexScore = i;
+            }
+        }
+        
+        gBest = population[MaxIndexScore].Position.clone();
+        
+        // Boucle principal
+            for (int i = 0; i < maxIteration; i++) // Tant que (Cdt d'arret non verifie)
+            {
+                for (int j = 0; j < taillePopu ; j++) // pour chaque particule xi
+                {
+                    population[j].updateVitesse(tetaV, c1, c2, r1, r2, gBest);
+                    population[j].updatePosition(); // mise a jour de la position et Pbest
+                    population[j] = new particule(localSearch(population[j].Position, 1));
+                }
+                // Mise a jour de Gbest
+                for (int j = 0; j < taillePopu ; j++) {
+                    if (population[j].score < MaxScore)
+                    {   
+                        System.out.println("Meilleur score de la "+j+" etiration: "+population[j].score);
+                        System.out.println("La meilleure solution  de literation est : "+population[j]);
+                        MaxScore = population[j].score;
+                        MaxIndexScore = j;
+                        gBest = population[j].Position.clone();
+                        System.out.println("Gbest : "+Arrays.toString(gBest));
+                    }
+                }
+                
+                Individue temp = new Individue(gBest);
+                if (temp.score == 0 )
+                {
+                    System.out.println("Meilleur solution trouvé");
+                    break;
+
+                }
+                    
+            }
+
+            System.out.print("La meilleure solution est : ");
+            System.out.print(Arrays.toString(gBest));
+            System.out.println(" avec un score de : " + MaxScore);
+            return gBest;
+
+    }
+
+    public int[] localSearch(int[] position, int delta) {
+        int[] bestPosition = position.clone();
+        Individue a = new Individue(position);
+        int bestScore = a.score;
+
+        boolean improved = true;
+        while (improved) {
+            improved = false;
+            for (int i = 0; i < position.length; i++) {
+                int[] neighbor = position.clone();
+                neighbor[i] += delta % position.length;
+                a = new Individue(neighbor);
+                int neighborScore = a.score;
+                if (neighborScore < bestScore) {
+                    bestPosition = neighbor.clone();
+                    bestScore = neighborScore;
+                    improved = true;
+                }
+            }
+            position = bestPosition.clone();
+        }
+
+        return bestPosition;
+    }
+}
 	
-	}
-
-	public class GA
-	{   
+public class GA{   
 	    int tailleEchec;
 	    int taillePopu;
 	    Population pop;
