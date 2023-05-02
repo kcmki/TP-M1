@@ -21,9 +21,9 @@ public class Controller {
 	//GUI elements
 	public TextField numberOfQueens;
 	public GridPane chessTable;
-	public TextField Timer,cree,parcouru;
+	public TextField Timer,cree,parcouru,Fitness;
 	public Text TextBOX;
-	public RadioButton buttonDFS,buttonBFS,buttonA1,buttonA2;
+	public RadioButton buttonGA,buttonPSO;
 	
 	//globals
 	public int NBQ = 8;
@@ -39,19 +39,15 @@ public class Controller {
 		NBQ = nbQueens;
 		int algo  = 0;
 		Timer.setText("");
-		parcouru.setText("");
-		cree.setText("");
+		/*parcouru.setText("");
+		cree.setText("");*/
 		
-		buttonDFS.setDisable(true);
-		buttonBFS.setDisable(true);
-		buttonA1.setDisable(true);
-		buttonA2.setDisable(true);
+		buttonGA.setDisable(true);
+		buttonPSO.setDisable(true);
 		numberOfQueens.setDisable(true);
 		
-		if(buttonDFS.isSelected()) algo = 0;
-		if(buttonBFS.isSelected()) algo = 1;
-		if(buttonA1.isSelected()) algo = 2;
-		if(buttonA2.isSelected()) algo = 3;
+		if(buttonGA.isSelected()) algo = 0;
+		if(buttonPSO.isSelected()) algo = 1;
 		
 		resetTable();
 
@@ -69,18 +65,17 @@ public class Controller {
 		    	S1 = task.getValue();
 		    	S = S1;
 
-				buttonDFS.setDisable(false);
-				buttonBFS.setDisable(false);
-				buttonA1.setDisable(false);
-				buttonA2.setDisable(false);
+				buttonGA.setDisable(false);
+				buttonPSO.setDisable(false);
 				numberOfQueens.setDisable(false);
 				
 				resetTable();
 				drawQueens(chessTable,S.Sol.Solution.Queens);
 				Utils.printArray(S.Sol.Solution.Queens);
 				Timer.setText(""+S.Sol.elapsedTime/1000.0);
-				parcouru.setText(""+S.Sol.parcouru);
-				cree.setText(""+S.Sol.cree);
+				/*parcouru.setText(""+S.Sol.parcouru);
+				cree.setText(""+S.Sol.cree);*/
+				Fitness.setText(""+S.Sol.Solution.verifyQueens());
 				TextBOX.setText("Done");
 		    }
 		});
@@ -88,10 +83,8 @@ public class Controller {
 		    @Override
 		    public void handle(WorkerStateEvent t) {
 
-				buttonDFS.setDisable(false);
-				buttonBFS.setDisable(false);
-				buttonA1.setDisable(false);
-				buttonA2.setDisable(false);
+				buttonGA.setDisable(false);
+				buttonPSO.setDisable(false);
 				numberOfQueens.setDisable(false);
 				
 				TextBOX.setText("Error");

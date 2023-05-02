@@ -21,6 +21,13 @@ public class ChessTable {
 		this.finished = T.finished;
 		this.index=T.index;
 	}
+	public ChessTable(int NbQueens,int[] tab) {
+		this.max = NbQueens;
+		this.Queens = new int[NbQueens];
+		for(int e:tab) {
+			this.addElement(e);
+		}
+	}
 	
 	public void addElement(int x) {
 		if(!finished) {

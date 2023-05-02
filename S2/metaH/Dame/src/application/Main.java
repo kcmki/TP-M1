@@ -14,7 +14,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			
-			Parent root = FXMLLoader.load(getClass().getResource("/Main.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("/Main2.fxml"));
 			primaryStage.setScene(new Scene(root));
 			
 			Image icon = new Image("crown.png");
