@@ -193,8 +193,8 @@ public class Solver {
 	    int TaillePopu; // taille de la population
 	    PriorityQueue<Individue> Individus;
 	    int TailleEchec; // taille de l'échiquier
-	    static int cpt_add = 0;
-	    static int cpt_del = 0;
+	     int cpt_add = 0;
+	     int cpt_del = 0;
 
 	    // Constructeur
 	    public Population(int TaillePopu, int TailleEchec) {
@@ -317,18 +317,58 @@ public class Individue {
     }
 
     
-    public int fitnessFct() {
-        int nb = 0;
-        for (int i = 0; i < n-1; i++) {
-            for (int j = i+1; j < n; j++) {
-                if (Position[i] == Position[j] || Math.abs(Position[i] - Position[j]) == j-i) 
-                {
-                    nb++;
-                }
-            }
-        }
-        return nb;
-    }
+    public  int fitnessFct() {
+
+		for(int i = 0;i < this.index;i++) {
+			
+			//on vérifie les colonne vu que les lignes sont surement juste
+			for(int j= 0; j<this.index;j++) {
+				if(Queens[i] == Queens[j] && i != j && Queens[i] != -1) return 1;
+			}
+			
+			//vérification des diagonale
+			if(verifyDiag(i,this.Queens[i]) == 1) return 1;
+		}
+		return 0;
+	}
+	
+	private int verifyDiag(int i, int j) {
+
+		//on vérifie les quatre diagonale de l'element situé a [i,j]
+		//Nord ouest
+		int tempI = i,tempJ = j;
+		while(tempI >= 0 && tempJ >= 0) {
+			if(this.Queens[tempI] == tempJ && tempJ  !=j && tempI != i && tempJ != -1) return 1;
+			tempI--;
+			tempJ--;
+		}
+		//Sud est
+		tempI = i;
+		tempJ = j;
+		while(tempI < this.index && tempJ < this.index) {
+			if(this.Queens[tempI] == tempJ && tempJ  !=j && tempI != i && tempJ != -1) return 1;
+			tempI++;
+			tempJ++;
+		}
+		// nord est
+		tempI = i;
+		tempJ = j;
+		while(tempI >= 0 && tempJ < this.index) {
+			if(this.Queens[tempI] == tempJ && tempJ  !=j && tempI != i && tempJ != -1) return 1;
+			tempI--;
+			tempJ++;
+		}
+		//sud ouest
+		tempI = i;
+		tempJ = j;
+		while(tempI < this.index && tempJ >= 0) {
+			if(this.Queens[tempI] == tempJ && tempJ  !=j && tempI != i && tempJ != -1) return 1;
+			tempI++;
+			tempJ--;
+		}
+		return 0;
+	}
+
     
     // Verification
 
@@ -500,7 +540,7 @@ public class particule extends Individue{
         return result;
     }
     
-    public static int[] multiplTableau(double n, int[] arr) {
+    public  int[] multiplTableau(double n, int[] arr) {
         int[] result = new int[arr.length];
         for (int i = 0; i < arr.length; i++) {
             result[i] = (int) (n * arr[i]);
@@ -511,7 +551,7 @@ public class particule extends Individue{
     
     
     
-    public static int[] addTableau(int[] t1, int[] t2) {
+    public  int[] addTableau(int[] t1, int[] t2) {
         int[] result = new int[t1.length];
         for (int i = 0; i < t1.length; i++) {
             result[i] = (t1[i] + t2[i]) % t1.length;
