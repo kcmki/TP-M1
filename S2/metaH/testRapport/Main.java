@@ -35,43 +35,37 @@ public class Main {
 
         float nbBench = 5;
         float nbIter = 3;
-        int tailleEchec = 8;
-
-        float tcMin = 0;
-        float tcMax = 1;
-        float tmMin = 0;
-        float tmMax = 1;
+        int tailleEchec = 10;
 
         int minmaxIteration = 1000;
-        int maxmaxIteration = 10000;
+        int maxmaxIteration = 5000;
 
-        int minTaillepopu = 100;
-        int maxTaillepopu = 1000;
+        int minTaillepopu = 50;
+        int maxTaillepopu = 100;
 
-        try ( FileWriter myWriter = new FileWriter("GA-8-5-3.txt");) {
-                for (int i = 0 ; i <= nbBench ; i++)) {
-                    for (int j = 0; j <= nbBench; i++)) {
-                        for (int maxIteration = minmaxIteration; maxIteration <= maxmaxIteration; maxIteration+=((maxmaxIteration-minmaxIteration)/nbBench)) {
-                            for (int taillePopu = minTaillepopu; taillePopu <= maxTaillepopu; taillePopu+=((maxTaillepopu-minTaillepopu)/nbBench)) {
-                                Individue a = null;
-                                float temp = 0;
-                                float score = 0;
-                                for (int w = 0; w < nbIter; w++) {
-                                    GenetiqueAlgo algo = new GenetiqueAlgo(taillePopu,tailleEchec,i/nbBench,j/nbBench);
-                                    long startTime = System.currentTimeMillis();
-                                    a = algo.run(maxIteration);
-                                    long endTime = System.currentTimeMillis();
-                                    temp += (endTime - startTime);
-                                    score += a.score;
-                                } 
-                                String line = tailleEchec+","+taillePopu+","+maxIteration+","+i/nbBench+","+j/nbBench+","+temp/nbIter+","+score/nbIter;
-                                
-                                //myWriter.write(line+"\n");  
-                            }
+        try ( FileWriter myWriter = new FileWriter("GA-10-5-3.txt");) {
+            for (int i = 0 ; i <= nbBench ; i++) {
+                for (int j = 0; j <= nbBench; j++) {
+                    for (int maxIteration = minmaxIteration; maxIteration <= maxmaxIteration; maxIteration+=((maxmaxIteration-minmaxIteration)/nbBench)) {
+                        for (int taillePopu = minTaillepopu; taillePopu <= maxTaillepopu; taillePopu+=((maxTaillepopu-minTaillepopu)/nbBench)) {
+                            Individue a = null;
+                            float temp = 0;
+                            float score = 0;
+                            for (int w = 0; w < nbIter; w++) {
+                                GenetiqueAlgo algo = new GenetiqueAlgo(taillePopu,tailleEchec,(float)(i/nbBench),(float)(j/nbBench));
+                                long startTime = System.currentTimeMillis();
+                                a = algo.run(maxIteration);
+                                long endTime = System.currentTimeMillis();
+                                temp += (endTime - startTime);
+                                score += a.score;
+                            }  
+                            String line = tailleEchec+","+taillePopu+","+maxIteration+","+(float)(i/nbBench)+","+(float)(j/nbBench)+","+temp/nbIter+","+score/nbIter;
+                            myWriter.write(line+"\n");  
                         }
                     }
                 }
             }
+        }
     
         
 

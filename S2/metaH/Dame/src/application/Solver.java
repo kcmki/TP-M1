@@ -318,55 +318,57 @@ public class Individue {
 
     
     public  int fitnessFct() {
-
-		for(int i = 0;i < this.index;i++) {
+    	int fit = 0;
+		for(int i = 0;i < this.n;i++) {
 			
 			//on vérifie les colonne vu que les lignes sont surement juste
-			for(int j= 0; j<this.index;j++) {
-				if(Queens[i] == Queens[j] && i != j && Queens[i] != -1) return 1;
+			for(int j= 0; j<this.n;j++) {
+				if(Position[i] == Position[j] && i != j && Position[i] != -1) fit++;
 			}
+
 			
 			//vérification des diagonale
-			if(verifyDiag(i,this.Queens[i]) == 1) return 1;
+			fit +=verifyDiag(i,this.Position[i]);
 		}
-		return 0;
+		return fit;
 	}
 	
 	private int verifyDiag(int i, int j) {
 
 		//on vérifie les quatre diagonale de l'element situé a [i,j]
 		//Nord ouest
+		int fit = 0;
 		int tempI = i,tempJ = j;
 		while(tempI >= 0 && tempJ >= 0) {
-			if(this.Queens[tempI] == tempJ && tempJ  !=j && tempI != i && tempJ != -1) return 1;
+			if(this.Position[tempI] == tempJ && tempJ  !=j && tempI != i && tempJ != -1) fit++;
 			tempI--;
 			tempJ--;
 		}
 		//Sud est
 		tempI = i;
 		tempJ = j;
-		while(tempI < this.index && tempJ < this.index) {
-			if(this.Queens[tempI] == tempJ && tempJ  !=j && tempI != i && tempJ != -1) return 1;
+		while(tempI < this.n && tempJ < this.n) {
+			if(this.Position[tempI] == tempJ && tempJ  !=j && tempI != i && tempJ != -1) fit++;
 			tempI++;
 			tempJ++;
 		}
 		// nord est
 		tempI = i;
 		tempJ = j;
-		while(tempI >= 0 && tempJ < this.index) {
-			if(this.Queens[tempI] == tempJ && tempJ  !=j && tempI != i && tempJ != -1) return 1;
+		while(tempI >= 0 && tempJ < this.n) {
+			if(this.Position[tempI] == tempJ && tempJ  !=j && tempI != i && tempJ != -1) fit++;
 			tempI--;
 			tempJ++;
 		}
 		//sud ouest
 		tempI = i;
 		tempJ = j;
-		while(tempI < this.index && tempJ >= 0) {
-			if(this.Queens[tempI] == tempJ && tempJ  !=j && tempI != i && tempJ != -1) return 1;
+		while(tempI < this.n && tempJ >= 0) {
+			if(this.Position[tempI] == tempJ && tempJ  !=j && tempI != i && tempJ != -1) fit++;
 			tempI++;
 			tempJ--;
 		}
-		return 0;
+		return fit;
 	}
 
     

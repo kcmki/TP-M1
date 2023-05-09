@@ -98,6 +98,7 @@ public class Controller {
 		for(int x = 0; x< queens.length;x++) {
 			int i = x;
 			int j = queens[x];
+			if( j >= queens.length) j = j % queens.length;
 		
 			Image Queen = new Image("crown-gold.png");
 			Image QueenBlack = new Image("crown-gold-bg.png");
