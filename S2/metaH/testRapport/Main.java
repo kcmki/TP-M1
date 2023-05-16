@@ -25,53 +25,37 @@ public class Main {
         
 
 
-        //double tetaV    = 0.4;
-        //double c1       = 1.49445f;
-        //double c2       = 1.49445f;
-        //int maxIteration = 10000;
-        //int taillePopu = 100;
-        //double r1  = 0.2;//Math.random();
-        //double r2 = 0.2;//Math.random();
+        double tetaV    = 0.4;
+        double c1       = 1.49445f;
+        double c2       = 1.49445f;
+        int maxIteration = 10000;
+        int taillePopu = 100;
+        double r1  = 0.2;//Math.random();
+        double r2 = 0.2;//Math.random();
 
-        float nbBench = 5;
-        float nbIter = 3;
-        int tailleEchec = 8;
+        int maxEchec = 15;
+        int nbIter = 5;
 
-        float tcMin = 0;
-        float tcMax = 1;
-        float tmMin = 0;
-        float tmMax = 1;
-
-        int minmaxIteration = 1000;
-        int maxmaxIteration = 10000;
-
-        int minTaillepopu = 100;
-        int maxTaillepopu = 1000;
-
-        try ( FileWriter myWriter = new FileWriter("GA-8-5-3.txt");) {
-                for (int i = 0 ; i <= nbBench ; i++)) {
-                    for (int j = 0; j <= nbBench; i++)) {
-                        for (int maxIteration = minmaxIteration; maxIteration <= maxmaxIteration; maxIteration+=((maxmaxIteration-minmaxIteration)/nbBench)) {
-                            for (int taillePopu = minTaillepopu; taillePopu <= maxTaillepopu; taillePopu+=((maxTaillepopu-minTaillepopu)/nbBench)) {
-                                Individue a = null;
-                                float temp = 0;
-                                float score = 0;
-                                for (int w = 0; w < nbIter; w++) {
-                                    GenetiqueAlgo algo = new GenetiqueAlgo(taillePopu,tailleEchec,i/nbBench,j/nbBench);
-                                    long startTime = System.currentTimeMillis();
-                                    a = algo.run(maxIteration);
-                                    long endTime = System.currentTimeMillis();
-                                    temp += (endTime - startTime);
-                                    score += a.score;
-                                } 
-                                String line = tailleEchec+","+taillePopu+","+maxIteration+","+i/nbBench+","+j/nbBench+","+temp/nbIter+","+score/nbIter;
-                                
-                                //myWriter.write(line+"\n");  
-                            }
+        try ( FileWriter myWriter = new FileWriter("GA-n.txt");) {
+                for (int i = 5 ; i <= maxEchec ; i++) {
+                            Individue a = null;
+                            float temp = 0;
+                            float score = 0;
+                            for (int w = 0; w < nbIter; w++) {
+                                GenetiqueAlgo algo = new GenetiqueAlgo(taillePopu,i,0.4,0.4);
+                                long startTime = System.currentTimeMillis();
+                                a = algo.run(maxIteration);
+                                long endTime = System.currentTimeMillis();
+                                temp += (endTime - startTime);
+                                score += a.score;
+                            }  
+                            String line = i+","+temp/nbIter+","+score/nbIter;
+                            System.out.println(line);
+                            myWriter.write(line+"\n");  
                         }
                     }
                 }
-            }
+        
     
         
 
@@ -91,7 +75,7 @@ public class Main {
                 String line = tailleEchec+","+taillePopu+","+maxIteration+","+tetaV+","+c1+","+c2+","+temp/nbIter+","+score/nbIter;
                 System.out.println(tailleEchec+","+taillePopu+","+maxIteration+","+tetaV+","+c1+","+c2+","+temp/nbIter+","+score/nbIter);
                 myWriter.write(line+"\n");  */
-    }
+    
 
     public static void printArray(int[] tab) {
         for (int i = 0; i < tab.length; i++) {

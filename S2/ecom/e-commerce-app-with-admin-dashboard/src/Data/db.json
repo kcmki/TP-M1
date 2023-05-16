@@ -1,0 +1,303 @@
+{
+  "users": [
+    {
+      "username": "Super Admin",
+      "email": "dummy@dummy.com",
+      "password": "123123123",
+      "image": "https://res.cloudinary.com/djorpdesu/image/upload/v1674138093/gdybotabhkk6enkuvlgd.jpg",
+      "userType": "super admin",
+      "status": "active",
+      "id": 1,
+      "phone": "46656545",
+      "house": "666/1",
+      "street": "Hell Street",
+      "state": "Nostate",
+      "country": "Neverland"
+    },
+    {
+      "username": "Guest User",
+      "phone": "123456789",
+      "email": "guest@dummy.com",
+      "password": "1111222233334",
+      "userType": "guest",
+      "status": "active",
+      "id": 2,
+      "house": "house 1",
+      "street": "some street",
+      "state": "Somewhere",
+      "country": "Country Name",
+      "image": "http://res.cloudinary.com/djorpdesu/image/upload/v1674138205/vxhdz4ogy6rljpk3zrgq.jpg"
+    },
+    {
+      "username": "Dummy User 01",
+      "phone": "123456",
+      "email": "dummy01@dummy.com",
+      "password": "1234",
+      "userType": "admin",
+      "status": "active",
+      "id": 3
+    },
+    {
+      "username": "Dummy User 02",
+      "phone": "65465465",
+      "email": "dummy02@dummy.com",
+      "password": "1234",
+      "userType": "admin",
+      "status": "deactive",
+      "id": 4
+    }
+  ],
+  "customers": [
+    {
+      "username": "Guest User",
+      "email": "guest@dummy.com",
+      "password": "12344321",
+      "image": "http://res.cloudinary.com/djorpdesu/image/upload/v1674138205/vxhdz4ogy6rljpk3zrgq.jpg",
+      "totalSpent": 950,
+      "status": "active",
+      "id": 1,
+      "phone": "46656545",
+      "house": "666/1",
+      "street": "Hell Street",
+      "state": "Nostate",
+      "country": "Neverland"
+    },
+    {
+      "username": "Dummy User",
+      "password": "1234",
+      "email": "dummy@dummy.com",
+      "phone": "0123456789",
+      "house": "house no",
+      "street": "street name",
+      "state": "state name",
+      "country": "Virtual",
+      "image": "https://res.cloudinary.com/djorpdesu/image/upload/v1674138093/gdybotabhkk6enkuvlgd.jpg",
+      "status": "blocked",
+      "id": 2
+    },
+    {
+      "username": "Dummy User 01",
+      "password": "1234",
+      "email": "dummy01@dummy.com",
+      "phone": "65465465",
+      "house": "666/1",
+      "street": "street street",
+      "state": "Inferno",
+      "country": "neverland",
+      "image": "",
+      "status": "blocked",
+      "id": 3
+    }
+  ],
+  "banner": [
+    {
+      "title": "Shoes",
+      "status": "active",
+      "image": "http://res.cloudinary.com/driu9rjvk/image/upload/v1683997090/ps0ks6oynwwgwfcdpy0w.jpg",
+      "id": 6
+    },
+    {
+      "title": "Shoes",
+      "status": "active",
+      "image": "http://res.cloudinary.com/driu9rjvk/image/upload/v1683999024/ev64zv48mkmig7jdxbni.jpg",
+      "id": 7
+    }
+  ],
+  "category": [
+    {
+      "category": "Men Shoes",
+      "status": "active",
+      "id": 7
+    },
+    {
+      "category": "Women Shoes",
+      "status": "active",
+      "id": 8
+    }
+  ],
+  "coupon": [
+    {
+      "coupon": "Logic",
+      "discount": 99,
+      "status": "active",
+      "id": 1
+    },
+    {
+      "coupon": "Logic54",
+      "discount": 54,
+      "status": "active",
+      "id": 2
+    },
+    {
+      "coupon": "Logic10",
+      "discount": 10,
+      "status": "active",
+      "id": 3
+    },
+    {
+      "coupon": "Logic20",
+      "discount": 20,
+      "status": "active",
+      "id": 4
+    },
+    {
+      "coupon": "hamidLafrappe21",
+      "discount": 21,
+      "status": "active",
+      "id": 5
+    }
+  ],
+  "products": [
+    {
+      "title": "Ultra boost 3.0",
+      "description": "basket pour le sport confortable et ultra légère ",
+      "brand": "Adidas",
+      "status": "active",
+      "category": "Men Shoes",
+      "price": 14800,
+      "image": "http://res.cloudinary.com/driu9rjvk/image/upload/v1684009129/qbzyjuyltx7q9zpyg0vm.webp",
+      "id": 1
+    },
+    {
+      "title": "Air force one",
+      "description": "basket lifestyle ",
+      "brand": "Nike",
+      "status": "active",
+      "category": "Men Shoes",
+      "price": 12600,
+      "image": "http://res.cloudinary.com/driu9rjvk/image/upload/v1684009168/r8tei0mppxrvpffprei7.jpg",
+      "id": 2
+    },
+    {
+      "title": "Air Max 270",
+      "description": "Sports wear",
+      "brand": "Nike",
+      "status": "active",
+      "category": "Men Shoes",
+      "price": 9800,
+      "image": "http://res.cloudinary.com/driu9rjvk/image/upload/v1684009201/rgyg9ebjjkhqqctat9qe.webp",
+      "id": 3
+    },
+    {
+      "title": "Air Jordan 4",
+      "description": "Série spécial limité",
+      "brand": "Nike",
+      "status": "active",
+      "category": "Men Shoes",
+      "price": 18200,
+      "image": "http://res.cloudinary.com/driu9rjvk/image/upload/v1684009240/jbptml0mvjudd3izjwst.jpg",
+      "id": 4
+    },
+    {
+      "title": "550 Premium",
+      "description": "Basket",
+      "brand": "New balance",
+      "status": "active",
+      "category": "Men Shoes",
+      "price": 9600,
+      "image": "http://res.cloudinary.com/driu9rjvk/image/upload/v1684009283/oxyjagrdxmf2alyq77ge.jpg",
+      "id": 5
+    },
+    {
+      "title": "Air Force Off White",
+      "description": "Basket en collaboration avec off white série très limité ",
+      "brand": "Nike",
+      "status": "active",
+      "category": "Men Shoes",
+      "price": 21000,
+      "image": "http://res.cloudinary.com/driu9rjvk/image/upload/v1684009332/hl0qi0qkr0nhywow3b6i.jpg",
+      "id": 6
+    },
+    {
+      "title": "Old School",
+      "description": "Skateur",
+      "brand": "Vans",
+      "status": "active",
+      "category": "Men Shoes",
+      "price": 5800,
+      "image": "http://res.cloudinary.com/driu9rjvk/image/upload/v1684009377/g0f0covgvzlqviitxlny.jpg",
+      "id": 7
+    },
+    {
+      "title": "Yeezy 700 Wave runner",
+      "description": "conçu par kanye west",
+      "brand": "Adidas",
+      "status": "active",
+      "category": "Men Shoes",
+      "price": 18900,
+      "image": "http://res.cloudinary.com/driu9rjvk/image/upload/v1684009417/aaxz8lg3jnbiztjatjsw.jpg",
+      "id": 8
+    },
+    {
+      "title": "Gazelle",
+      "description": "pour les filles",
+      "brand": "Adidas",
+      "status": "active",
+      "category": "Women Shoes",
+      "price": 7800,
+      "image": "http://res.cloudinary.com/driu9rjvk/image/upload/v1684009922/tll0zboimtkz84opbpfa.jpg",
+      "id": 9
+    },
+    {
+      "title": "Sport",
+      "description": "Pour le sport",
+      "brand": "Nike",
+      "status": "active",
+      "category": "Women Shoes",
+      "price": 5800,
+      "image": "http://res.cloudinary.com/driu9rjvk/image/upload/v1684009937/xfdtl6oamd20tr6hmiy2.jpg",
+      "id": 10
+    },
+    {
+      "title": "574",
+      "description": "Mauve",
+      "brand": "New balance",
+      "status": "active",
+      "category": "Women Shoes",
+      "price": 12800,
+      "image": "http://res.cloudinary.com/driu9rjvk/image/upload/v1684009965/y1o0hvjks52xctwbchsq.jpg",
+      "id": 11
+    },
+    {
+      "title": "Dunk low",
+      "description": "Dunk",
+      "brand": "Nike",
+      "status": "active",
+      "category": "Women Shoes",
+      "price": 9800,
+      "image": "http://res.cloudinary.com/driu9rjvk/image/upload/v1684010059/huqiu9424bwxc5u3r252.jpg",
+      "id": 12
+    },
+    {
+      "title": "Sacai",
+      "description": "Sacai",
+      "brand": "Nike",
+      "status": "active",
+      "category": "Women Shoes",
+      "price": 11200,
+      "image": "http://res.cloudinary.com/driu9rjvk/image/upload/v1684010087/zd98ffkprspf13aq0s5z.jpg",
+      "id": 13
+    },
+    {
+      "title": "SuperStar",
+      "description": "Gold",
+      "brand": "Adidas",
+      "status": "active",
+      "category": "Women Shoes",
+      "price": 8600,
+      "image": "http://res.cloudinary.com/driu9rjvk/image/upload/v1684010174/wwt1eaios5svsary0k3v.jpg",
+      "id": 14
+    },
+    {
+      "title": "Air Max Pulse",
+      "description": "Pulse",
+      "brand": "Nike",
+      "status": "active",
+      "category": "Women Shoes",
+      "price": 11600,
+      "image": "http://res.cloudinary.com/driu9rjvk/image/upload/v1684010228/u4e2zd8o6nbmiubhewyv.jpg",
+      "id": 15
+    }
+  ],
+  "orders": []
+}
