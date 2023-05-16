@@ -136,3 +136,8 @@ db.clients.insertMany([
 	{ NUMCLIENT: 68, NOMCLIENT: "AYATA", PRENOMCLIENT: "Samia" },
 	{ NUMCLIENT: 69, NOMCLIENT: "TEBIBEL", PRENOMCLIENT: "Nabila" }
 ]);
+
+db.collection("Hotel").find({"ETOILES": "3"}).toArray(function(err, result) {
+  if (err) throw err;
+  console.log(result);
+});
