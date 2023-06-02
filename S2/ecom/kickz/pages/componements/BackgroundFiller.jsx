@@ -1,14 +1,11 @@
-
 import Image from "next/image";
 
 function importAll(r) {
     return r.keys().map(r);
-  }
+}
 
 export default function BackgroundFiller({}) {
 
-
-      
     let images = importAll(require.context('../../public/pngs/', false, /\d\.(png|jpe?g|svg)$/));
 
 

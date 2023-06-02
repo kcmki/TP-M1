@@ -5,7 +5,7 @@ import "./navbar.css";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../App/features/customerAuthSlice";
-
+import img from "./Logo.png"
 const Navbar = () => {
   const [showNav, setShowNav] = useState(false);
 
@@ -23,7 +23,7 @@ const Navbar = () => {
     <nav className="navBar shadow sticky-top">
       <div className="container d-md-flex justify-content-between p-3 p-md-2">
         <div className="d-flex justify-content-between align-items-center">
-          <Link className="title h1 text-dark" to={'/'} >MySneakersDz</Link>
+          <Link className="title h1 text-dark" to={'/'} ><img width={"auto"} height={"80px"} src={img}></img></Link>
           <button
             className="d-md-none rounded btn btn-outline bg-white"
             onClick={() => setShowNav(!showNav)}

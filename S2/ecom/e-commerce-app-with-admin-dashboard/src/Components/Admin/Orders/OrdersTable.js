@@ -6,7 +6,7 @@ const OrdersTable = ({ orders }) => {
 
   return (
     <>
-      <div className="table-responsive">
+      <div className="table-responsive bg-white">
         <table className="table align-items-center text-center ">
           <thead className="thead-light ">
             <tr>

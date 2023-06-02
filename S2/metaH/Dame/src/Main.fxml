@@ -65,7 +65,7 @@
                   <Font name="System Bold" size="22.0" />
                </font>
             </RadioButton>
-            <RadioButton fx:id="buttonA2" layoutX="73.0" layoutY="371.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="50.0" prefWidth="257.0" text="A* - H2()          " textFill="#3a3a3a" toggleGroup="$Algorithm">
+            <RadioButton fx:id="buttonA2" layoutX="73.0" layoutY="371.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="50.0" prefWidth="257.0" text="A* - H2()          " textFill="#383838" toggleGroup="$Algorithm">
                <font>
                   <Font name="System Bold" size="22.0" />
                </font>

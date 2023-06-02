@@ -145,6 +145,24 @@
       "discount": 21,
       "status": "active",
       "id": 5
+    },
+    {
+      "coupon": "Madame",
+      "discount": 99,
+      "status": "active",
+      "id": 6
+    },
+    {
+      "coupon": "Madame Boughaci",
+      "discount": 99,
+      "status": "active",
+      "id": 7
+    },
+    {
+      "coupon": "Madame BOUGHACI",
+      "discount": 99,
+      "status": "active",
+      "id": 8
     }
   ],
   "products": [
@@ -299,5 +317,74 @@
       "id": 15
     }
   ],
-  "orders": []
+  "orders": [
+    {
+      "customerId": 1,
+      "customerName": "Guest User",
+      "customerEmail": "guest@dummy.com",
+      "date": "2023-05-16T20:23:28.693Z",
+      "coupon": "",
+      "discountPercent": 0,
+      "subTotal": 12600,
+      "total": 12600,
+      "deliveryInfo": {
+        "name": "Guest User",
+        "phone": "46656545",
+        "house": "666/1",
+        "street": "Hell Street",
+        "state": "Nostate",
+        "country": "Neverland"
+      },
+      "products": [
+        {
+          "id": 2,
+          "title": "Air force one",
+          "price": 12600,
+          "image": "http://res.cloudinary.com/driu9rjvk/image/upload/v1684009168/r8tei0mppxrvpffprei7.jpg",
+          "quantity": 1,
+          "total": 12600
+        }
+      ],
+      "status": "active",
+      "id": 1
+    },
+    {
+      "customerId": 1,
+      "customerName": "Guest User",
+      "customerEmail": "guest@dummy.com",
+      "date": "2023-06-01T14:27:09.178Z",
+      "coupon": "",
+      "discountPercent": 0,
+      "subTotal": 22400,
+      "total": 22400,
+      "deliveryInfo": {
+        "name": "Guest User",
+        "phone": "46656545",
+        "house": "666/1",
+        "street": "Hell Street",
+        "state": "Nostate",
+        "country": "Neverland"
+      },
+      "products": [
+        {
+          "id": 2,
+          "title": "Air force one",
+          "price": 12600,
+          "image": "http://res.cloudinary.com/driu9rjvk/image/upload/v1684009168/r8tei0mppxrvpffprei7.jpg",
+          "quantity": 1,
+          "total": 12600
+        },
+        {
+          "id": 3,
+          "title": "Air Max 270",
+          "price": 9800,
+          "image": "http://res.cloudinary.com/driu9rjvk/image/upload/v1684009201/rgyg9ebjjkhqqctat9qe.webp",
+          "quantity": 1,
+          "total": 9800
+        }
+      ],
+      "status": "active",
+      "id": 2
+    }
+  ]
 }

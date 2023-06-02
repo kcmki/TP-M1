@@ -3,4 +3,5 @@
 *.class
 kickz.7z
 .\nodes_modules
+**/.ipynb_checkpoints
 D:\Desktop\M1\TP\S2\ecom\Mazadi-Projet_E-commerce

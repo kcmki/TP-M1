@@ -18,7 +18,7 @@ const Order = () => {
     <>
         { order && (
             <div className='container'>
-                <div className="my-5 table-responsive border-0 shadow">
+                <div className="my-5 table-responsive border-0 shadow bg-white">
                     <table className="table  align-items-center text-center mb-0">
                     <thead>
                         <tr>

@@ -59,10 +59,8 @@ export default function Header() {
                     <div className="flex justify-center items-center p-4"><BagIcon /></div>
                 </div>
 
-
                 <input type="checkbox" name="Bag" id="Bag" className='hidden'/>
                 <Bag />
-
             </div>
 
         </header>

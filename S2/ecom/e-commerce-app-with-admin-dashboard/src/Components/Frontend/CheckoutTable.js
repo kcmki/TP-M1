@@ -4,7 +4,7 @@ const CheckoutTable = ({items}) => {
     
     return (
     <>
-      <div className=" table-responsive border-0">
+      <div className=" table-responsive border-0 bg-white">
         <table className="table table-sm align-items-center text-center mb-0">
           <thead>
             <tr>

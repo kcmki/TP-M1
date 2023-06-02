@@ -10,7 +10,7 @@ const CartTable = ({items}) => {
   
     return (
     <>
-      <div className=" table-responsive border mt-5">
+      <div className=" table-responsive border mt-5 bg-white">
         <table className="table align-items-center text-center mb-0">
           <thead className="table-primary ">
             <tr>
